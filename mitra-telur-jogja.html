@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mitra Telur Jogja — Supplier Telur Segar Terpercaya di Yogyakarta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:     #E8192C;
+      --orange:  #F47920;
+      --yellow:  #FFC107;
+      --cream:   #FFFDF5;
+      --cream2:  #FFF4DF;
+      --dark:    #1A1A1A;
+      --mid:     #555555;
+      --muted:   #888888;
+      --white:   #FFFFFF;
+      --radius:  12px;
+      --shadow:  0 4px 20px rgba(244,121,32,0.12);
+      --shadow-hover: 0 8px 32px rgba(244,121,32,0.22);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--dark);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ─── UTILITIES ─── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--dark);
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--mid);
+      margin-top: 12px;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(232,25,44,0.25);
+    }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--orange);
+      border: 2px solid var(--orange);
+    }
+    .btn-wa {
+      background: #25D366;
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(37,211,102,0.28);
+    }
+    .btn-wa2 {
+      background: var(--white);
+      color: #25D366;
+      border: 2px solid #25D366;
+    }
+    .btn-wa2:hover { background: #f0fff6; }
+
+    /* ─── NAVBAR ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,253,245,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(244,121,32,0.12);
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav__logo img {
+      height: 44px;
+      width: auto;
+    }
+    .nav__logo-text {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1.1;
+    }
+    .nav__logo-text span { display: block; color: var(--red); font-size: 0.7rem; letter-spacing: 0.08em; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav__links a {
+      text-decoration: none;
+      color: var(--mid);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav__links a:hover { color: var(--orange); }
+    .nav__cta { flex-shrink: 0; }
+    .nav__cta .btn { padding: 10px 22px; font-size: 0.88rem; }
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dark);
+      font-size: 1.4rem;
+      padding: 4px;
+    }
+    .nav__mobile {
+      display: none;
+      flex-direction: column;
+      background: var(--cream);
+      border-top: 1px solid rgba(244,121,32,0.12);
+      padding: 16px 24px 20px;
+      gap: 4px;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      text-decoration: none;
+      color: var(--mid);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: color 0.2s;
+    }
+    .nav__mobile a:hover { color: var(--orange); }
+    .nav__mobile .btn { margin-top: 12px; justify-content: center; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, #FFF8E1 0%, #FFE9C5 50%, #FFDDA8 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0 70px;
+    }
+    .hero__egg-bg {
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 520px;
+      height: 620px;
+      opacity: 0.13;
+      pointer-events: none;
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244,121,32,0.1);
+      color: var(--orange);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .hero__title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 18px;
+    }
+    .hero__title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+    .hero__subtitle {
+      font-size: 1.05rem;
+      color: var(--mid);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+    .hero__cta-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .hero__badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero__badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border-radius: 50px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--dark);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .hero__badge i { color: var(--orange); font-size: 0.85rem; }
+    .hero__visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero__img-wrap {
+      width: 340px;
+      height: 360px;
+      background: linear-gradient(135deg, #FFE082, #FFB74D);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px rgba(244,121,32,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero__img-placeholder {
+      text-align: center;
+      color: rgba(255,255,255,0.85);
+    }
+    .hero__img-placeholder i { font-size: 4rem; margin-bottom: 8px; display: block; }
+    .hero__img-placeholder p { font-size: 0.85rem; font-weight: 600; }
+
+    /* ─── PAIN POINTS ─── */
+    .pain {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .pain__header { text-align: center; margin-bottom: 48px; }
+    .pain__header .section-subtitle { margin: 12px auto 0; }
+    .pain__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .pain-card {
+      border: 1.5px solid rgba(232,25,44,0.12);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .pain-card__icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(232,25,44,0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: var(--red);
+      font-size: 1.3rem;
+    }
+    .pain-card__title { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+    .pain-card__text { font-size: 0.9rem; color: var(--mid); line-height: 1.6; }
+    .pain__transition {
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--mid);
+      font-weight: 500;
+    }
+    .pain__transition strong { color: var(--orange); }
+
+    /* ─── KEUNGGULAN ─── */
+    .advantages {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #FFF4DF 0%, #FFE9C5 100%);
+    }
+    .advantages__header { text-align: center; margin-bottom: 48px; }
+    .advantages__header .section-subtitle { margin: 12px auto 0; }
+    .advantages__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .advantage-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .advantage-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .advantage-card__icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      color: var(--white);
+    }
+    .advantage-card__title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+    .advantage-card__text { font-size: 0.88rem; color: var(--mid); line-height: 1.6; }
+    .advantages__cta { text-align: center; }
+
+    /* ─── PRODUK ─── */
+    .products {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .products__header { text-align: center; margin-bottom: 12px; }
+    .products__note {
+      text-align: center;
+      margin-bottom: 48px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .products__highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(244,121,32,0.08);
+      color: var(--orange);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .products__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .product-card {
+      border: 2px solid rgba(244,121,32,0.15);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .product-card__img {
+      height: 200px;
+      background: linear-gradient(135deg, #FFE082, #FFA726);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.85);
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .product-card__img i { font-size: 2.8rem; }
+    .product-card__omega .product-card__img { background: linear-gradient(135deg, #A5D6A7, #43A047); }
+    .product-card__body { padding: 24px; }
+    .product-card__tag {
+      display: inline-block;
+      background: rgba(244,121,32,0.1);
+      color: var(--orange);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+    .product-card__omega .product-card__tag { background: rgba(67,160,71,0.1); color: #43A047; }
+    .product-card__title { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+    .product-card__desc { font-size: 0.9rem; color: var(--mid); line-height: 1.65; margin-bottom: 16px; }
+    .product-card__price {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .product-card__price i { color: var(--orange); }
+    .product-card .btn { width: 100%; justify-content: center; }
+
+    /* ─── TARGET PELANGGAN ─── */
+    .audience {
+      padding: 80px 0;
+      background: var(--cream);
+    }
+    .audience__header { text-align: center; margin-bottom: 48px; }
+    .audience__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .audience-col {
+      border-radius: 16px;
+      padding: 36px 32px;
+    }
+    .audience-col--b2b {
+      background: linear-gradient(135deg, #FFF4DF, #FFE5B4);
+      border: 2px solid rgba(244,121,32,0.2);
+    }
+    .audience-col--b2c {
+      background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+      border: 2px solid rgba(67,160,71,0.2);
+    }
+    .audience-col__icon { font-size: 2rem; margin-bottom: 12px; }
+    .audience-col__type {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--orange);
+    }
+    .audience-col--b2c .audience-col__type { color: #43A047; }
+    .audience-col__title { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+    .audience-col__desc { font-size: 0.92rem; color: var(--mid); line-height: 1.65; margin-bottom: 20px; }
+    .audience-col__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .audience-col__tag {
+      background: var(--white);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* ─── CARA ORDER ─── */
+    .order {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .order__header { text-align: center; margin-bottom: 56px; }
+    .order__steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .order__steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(12.5% + 16px);
+      right: calc(12.5% + 16px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--red));
+      z-index: 0;
+    }
+    .order-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 12px;
+    }
+    .order-step__num {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(244,121,32,0.3);
+    }
+    .order-step__title { font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
+    .order-step__text { font-size: 0.85rem; color: var(--mid); line-height: 1.55; }
+    .order__cta { text-align: center; }
+
+    /* ─── SOCIAL PROOF ─── */
+    .social-proof {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #1A1A1A 0%, #2D1A00 100%);
+      color: var(--white);
+    }
+    .social-proof__header { text-align: center; margin-bottom: 48px; }
+    .social-proof__header .section-label { color: var(--yellow); }
+    .social-proof__header .section-title { color: var(--white); }
+    .social-proof__header .section-subtitle { color: rgba(255,255,255,0.65); margin: 12px auto 0; }
+    .social-proof__stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-item__num {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-item__label { font-size: 0.9rem; color: rgba(255,255,255,0.65); font-weight: 500; }
+    .partner-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .partner-tag {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+    .partner-placeholder-label {
+      text-align: center;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .partner-placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    .partner-ph-item {
+      background: rgba(255,255,255,0.08);
+      border: 1.5px dashed rgba(255,255,255,0.2);
+      border-radius: 10px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 8px;
+      line-height: 1.3;
+    }
+
+    /* ─── TESTIMONI ─── */
+    .testimonials {
+      padding: 80px 0;
+      background: var(--cream2);
+    }
+    .testimonials__header { text-align: center; margin-bottom: 48px; }
+    .testimonials__header .section-subtitle { margin: 12px auto 0; }
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .testimonial-card__quote {
+      font-size: 2rem;
+      color: var(--orange);
+      font-family: 'Fraunces', serif;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .testimonial-card__stars { color: var(--yellow); font-size: 0.9rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-card__text { font-size: 0.92rem; color: var(--mid); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testimonial-card__author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-card__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--yellow));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .testimonial-card__name { font-weight: 700; font-size: 0.92rem; }
+    .testimonial-card__type { font-size: 0.8rem; color: var(--muted); }
+
+    /* ─── FAQ ─── */
+    .faq {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .faq__header { text-align: center; margin-bottom: 48px; }
+    .faq__header .section-subtitle { margin: 12px auto 0; }
+    .faq__list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border: 1.5px solid rgba(244,121,32,0.15);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-item__question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--dark);
+      transition: background 0.2s;
+    }
+    .faq-item__question:hover { background: rgba(244,121,32,0.04); }
+    .faq-item.open .faq-item__question { background: rgba(244,121,32,0.06); color: var(--orange); }
+    .faq-item__icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(244,121,32,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-item__icon { transform: rotate(180deg); background: var(--orange); color: var(--white); }
+    .faq-item__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-item__answer { max-height: 200px; }
+    .faq-item__answer-inner {
+      padding: 0 24px 20px;
+      font-size: 0.92rem;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    /* ─── CTA AKHIR ─── */
+    .cta-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--red) 100%);
+      text-align: center;
+    }
+    .cta-section__title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .cta-section__subtitle {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+    .cta-section__buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .cta-section__location {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #111111;
+      color: rgba(255,255,255,0.65);
+      padding: 48px 0 28px;
+    }
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 36px;
+    }
+    .footer__brand img { height: 50px; margin-bottom: 12px; }
+    .footer__brand-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .footer__tagline { font-size: 0.88rem; line-height: 1.6; margin-bottom: 16px; }
+    .footer__contact a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+    .footer__contact a:hover { color: #25D366; }
+    .footer__contact a i { color: #25D366; width: 16px; }
+    .footer__col-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+    .footer__links { list-style: none; }
+    .footer__links li { margin-bottom: 8px; }
+    .footer__links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer__links a:hover { color: var(--orange); }
+    .footer__address { font-size: 0.88rem; line-height: 1.7; }
+    .footer__address i { color: var(--orange); margin-right: 6px; }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.82rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav__links { display: none; }
+      .nav__cta { display: none; }
+      .nav__toggle { display: block; }
+      .hero__inner { grid-template-columns: 1fr; text-align: center; }
+      .hero__subtitle { margin-left: auto; margin-right: auto; }
+      .hero__cta-group { justify-content: center; }
+      .hero__badges { justify-content: center; }
+      .hero__visual { order: -1; }
+      .hero__img-wrap { width: 240px; height: 260px; }
+      .order__steps { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .order__steps::before { display: none; }
+      .partner-placeholder-grid { grid-template-columns: repeat(3, 1fr); }
+      .testimonials__grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+      .footer__inner { grid-template-columns: 1fr; gap: 28px; }
+      .products__grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .audience__grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero__img-wrap { width: 180px; height: 200px; }
+      .hero__img-placeholder i { font-size: 2.5rem; }
+      .social-proof__stats { gap: 32px; }
+      .stat-item__num { font-size: 2.2rem; }
+      .order__steps { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 375px) {
+      body { overflow-x: hidden; }
+      .container { padding: 0 16px; }
+      .hero__cta-group { flex-direction: column; }
+      .hero__cta-group .btn { width: 100%; justify-content: center; }
+      .partner-placeholder-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<header class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <img src="data:image/png;base64,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" alt="Mitra Telur Jogja" onerror="this.style.display='none'">
+        <div class="nav__logo-text">
+          Mitra Telur<span>Jogja</span>
+        </div>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#keunggulan">Keunggulan</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#cara-order">Cara Order</a></li>
+        <li><a href="#testimoni">Testimoni</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav__cta">
+        <i class="fab fa-whatsapp"></i> Pesan Sekarang
+      </a>
+      <button class="nav__toggle" aria-label="Menu" onclick="toggleMenu()">
+        <i class="fas fa-bars" id="menu-icon"></i>
+      </button>
+    </div>
+  </div>
+  <nav class="nav__mobile" id="mobile-menu">
+    <a href="#keunggulan" onclick="closeMenu()">Keunggulan</a>
+    <a href="#produk" onclick="closeMenu()">Produk</a>
+    <a href="#cara-order" onclick="closeMenu()">Cara Order</a>
+    <a href="#testimoni" onclick="closeMenu()">Testimoni</a>
+    <a href="#faq" onclick="closeMenu()">FAQ</a>
+    <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="closeMenu()">
+      <i class="fab fa-whatsapp"></i> Pesan Sekarang
+    </a>
+  </nav>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <svg class="hero__egg-bg" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="100" cy="130" rx="90" ry="110" fill="var(--orange)"/>
+    <ellipse cx="100" cy="80" rx="60" ry="70" fill="var(--yellow)"/>
+  </svg>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__eyebrow">
+          <i class="fas fa-map-marker-alt"></i>
+          Potorono, Bantul, Yogyakarta
+        </div>
+        <h1 class="hero__title">
+          Supplier Telur <em>Segar & Terpercaya</em> di Yogyakarta
+        </h1>
+        <p class="hero__subtitle">
+          Mitra Telur Jogja menyediakan telur ayam komersial dan telur omega berkualitas tinggi untuk seluruh wilayah DIY. Gratis ongkir, fresh dari farm, langsung diantar ke lokasi Anda.
+        </p>
+        <div class="hero__cta-group">
+          <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+          </a>
+          <a href="#produk" class="btn btn-secondary">
+            Lihat Produk <i class="fas fa-arrow-down"></i>
+          </a>
+        </div>
+        <div class="hero__badges">
+          <span class="hero__badge"><i class="fas fa-users"></i> 200+ Mitra Aktif</span>
+          <span class="hero__badge"><i class="fas fa-truck"></i> Gratis Ongkir</span>
+          <span class="hero__badge"><i class="fas fa-shield-alt"></i> Garansi Kerusakan</span>
+          <span class="hero__badge"><i class="fas fa-check-circle"></i> Stok Selalu Ada</span>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__img-wrap">
+          <div class="hero__img-placeholder">
+            <i class="fas fa-egg"></i>
+            <p>Foto Produk<br>Menyusul</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAIN POINTS ═══ -->
+<section class="pain">
+  <div class="container">
+    <div class="pain__header">
+      <span class="section-label">Masalah yang Sering Terjadi</span>
+      <h2 class="section-title">Kesulitan Mencari Supplier Telur<br>yang Bisa Diandalkan?</h2>
+      <p class="section-subtitle">Banyak bisnis makanan dan konsumen mengalami masalah yang sama saat membeli telur.</p>
+    </div>
+    <div class="pain__grid">
+      <div class="pain-card">
+        <div class="pain-card__icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <h3 class="pain-card__title">Stok Tidak Pasti</h3>
+        <p class="pain-card__text">Supplier sering kehabisan stok mendadak, mengganggu operasional dapur dan bisnis Anda.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card__icon"><i class="fas fa-egg" style="position:relative; top:0"></i></div>
+        <h3 class="pain-card__title">Telur Pecah Saat Dikirim</h3>
+        <p class="pain-card__text">Telur tiba dalam kondisi retak atau pecah tanpa ada jaminan penggantian dari supplier.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card__icon"><i class="fas fa-question-circle"></i></div>
+        <h3 class="pain-card__title">Harga Tidak Transparan</h3>
+        <p class="pain-card__text">Harga tidak jelas, sering berubah tanpa pemberitahuan, dan sulit dibandingkan antar supplier.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card__icon"><i class="fas fa-money-bill-wave"></i></div>
+        <h3 class="pain-card__title">Ongkir Mahal</h3>
+        <p class="pain-card__text">Biaya pengiriman tinggi yang memotong keuntungan bisnis Anda, apalagi untuk pemesanan rutin.</p>
+      </div>
+    </div>
+    <p class="pain__transition">
+      Kami hadir sebagai solusi. <strong>Mitra Telur Jogja memastikan stok selalu ada, telur dijamin segar, dan pengiriman gratis ke seluruh DIY.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ KEUNGGULAN ═══ -->
+<section class="advantages" id="keunggulan">
+  <div class="container">
+    <div class="advantages__header">
+      <span class="section-label">Keunggulan Kami</span>
+      <h2 class="section-title">Mengapa Memilih Mitra Telur Jogja?</h2>
+      <p class="section-subtitle">Kami berkomitmen memberikan yang terbaik — dari kualitas telur hingga pelayanan pengiriman.</p>
+    </div>
+    <div class="advantages__grid">
+      <div class="advantage-card">
+        <div class="advantage-card__icon"><i class="fas fa-tag"></i></div>
+        <div>
+          <h3 class="advantage-card__title">Harga Murah & Update Tiap Hari</h3>
+          <p class="advantage-card__text">Harga kami kompetitif dan diperbarui setiap hari mengikuti harga pasar. Anda selalu mendapat harga terbaik.</p>
+        </div>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-card__icon"><i class="fas fa-shield-alt"></i></div>
+        <div>
+          <h3 class="advantage-card__title">Garansi Telur Pecah & Retak</h3>
+          <p class="advantage-card__text">Setiap telur yang pecah atau retak saat diterima kami ganti. Anda tidak perlu khawatir rugi karena kerusakan.</p>
+        </div>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-card__icon"><i class="fas fa-truck"></i></div>
+        <div>
+          <h3 class="advantage-card__title">Gratis Ongkir Se-DIY & Sekitarnya</h3>
+          <p class="advantage-card__text">Pengiriman gratis ke seluruh wilayah Daerah Istimewa Yogyakarta dan sekitarnya. Tanpa biaya tambahan tersembunyi.</p>
+        </div>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-card__icon"><i class="fas fa-boxes"></i></div>
+        <div>
+          <h3 class="advantage-card__title">Stok Selalu Tersedia</h3>
+          <p class="advantage-card__text">Pasokan langsung dari farm memastikan stok kami tidak pernah kosong. Bisnis Anda tidak perlu berhenti karena kehabisan telur.</p>
+        </div>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-card__icon"><i class="fas fa-seedling"></i></div>
+        <div>
+          <h3 class="advantage-card__title">Telur Fresh Langsung dari Farm</h3>
+          <p class="advantage-card__text">Telur kami datang langsung dari peternakan, memastikan kesegaran dan kualitas yang konsisten di setiap pengiriman.</p>
+        </div>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-card__icon"><i class="fas fa-bolt"></i></div>
+        <div>
+          <h3 class="advantage-card__title">Pesan Sekarang, Langsung Diantar</h3>
+          <p class="advantage-card__text">Proses pemesanan cepat via WhatsApp. Konfirmasi mudah, pengiriman segera ke lokasi Anda di hari yang sama.</p>
+        </div>
+      </div>
+    </div>
+    <div class="advantages__cta">
+      <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <i class="fab fa-whatsapp"></i> Hubungi Kami Sekarang
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUK ═══ -->
+<section class="products" id="produk">
+  <div class="container">
+    <div class="products__header">
+      <span class="section-label">Produk Kami</span>
+      <h2 class="section-title">Pilihan Telur Berkualitas Tinggi</h2>
+    </div>
+    <div class="products__note">
+      <span class="products__highlight"><i class="fas fa-fire"></i> Harga lebih murah mulai 1 peti (15 kg)</span>
+      <span class="products__highlight" style="background:rgba(232,25,44,0.08);color:var(--red)"><i class="fas fa-building"></i> Penawaran spesial untuk B2B</span>
+    </div>
+    <div class="products__grid">
+      <div class="product-card">
+        <div class="product-card__img">
+          <i class="fas fa-egg"></i>
+          <span>Foto Produk Menyusul</span>
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__tag">Telur Komersial</span>
+          <h3 class="product-card__title">Telur Ayam Komersial</h3>
+          <p class="product-card__desc">Telur ayam ras segar berkualitas tinggi, cocok untuk kebutuhan memasak sehari-hari, industri kuliner, restoran, hotel, cafe, hingga katering dalam skala besar.</p>
+          <p class="product-card__price"><i class="fas fa-sync-alt"></i> Harga diupdate setiap hari — hubungi kami</p>
+          <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-wa">
+            <i class="fab fa-whatsapp"></i> Tanya Harga
+          </a>
+        </div>
+      </div>
+      <div class="product-card product-card__omega">
+        <div class="product-card__img" style="background: linear-gradient(135deg, #C8E6C9, #43A047)">
+          <i class="fas fa-leaf"></i>
+          <span>Foto Produk Menyusul</span>
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__tag">Telur Premium</span>
+          <h3 class="product-card__title">Telur Omega</h3>
+          <p class="product-card__desc">Telur ayam kaya omega-3 yang lebih sehat dan bernutrisi tinggi. Pilihan ideal untuk konsumen yang menjaga pola makan sehat atau bisnis yang menyajikan menu premium.</p>
+          <p class="product-card__price"><i class="fas fa-sync-alt"></i> Harga diupdate setiap hari — hubungi kami</p>
+          <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-wa">
+            <i class="fab fa-whatsapp"></i> Tanya Harga
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TARGET PELANGGAN ═══ -->
+<section class="audience" id="pelanggan">
+  <div class="container">
+    <div class="audience__header">
+      <span class="section-label">Siapa yang Kami Layani</span>
+      <h2 class="section-title">Untuk Bisnis & Konsumen Langsung</h2>
+      <p class="section-subtitle">Mitra Telur Jogja melayani semua segmen — dari bisnis skala besar hingga konsumen perorangan.</p>
+    </div>
+    <div class="audience__grid">
+      <div class="audience-col audience-col--b2b">
+        <div class="audience-col__icon">🏢</div>
+        <div class="audience-col__type">B2B — Business to Business</div>
+        <h3 class="audience-col__title">Untuk Bisnis & Usaha</h3>
+        <p class="audience-col__desc">Kami menjadi mitra terpercaya untuk bisnis kuliner dan distribusi yang membutuhkan pasokan telur rutin, berkualitas, dan dalam jumlah besar. Tersedia penawaran harga khusus dan kerja sama jangka panjang.</p>
+        <div class="audience-col__tags">
+          <span class="audience-col__tag">🍽️ Restoran</span>
+          <span class="audience-col__tag">🏨 Hotel</span>
+          <span class="audience-col__tag">☕ Cafe</span>
+          <span class="audience-col__tag">🥘 Catering</span>
+          <span class="audience-col__tag">🏪 Grosir</span>
+        </div>
+      </div>
+      <div class="audience-col audience-col--b2c">
+        <div class="audience-col__icon">🏠</div>
+        <div class="audience-col__type">B2C — Business to Consumer</div>
+        <h3 class="audience-col__title">Untuk Konsumen Langsung</h3>
+        <p class="audience-col__desc">Tidak hanya untuk bisnis — kami juga melayani pembelian langsung oleh konsumen rumah tangga. Pesan sesuai kebutuhan Anda, tanpa minimal pembelian, langsung diantar ke rumah.</p>
+        <div class="audience-col__tags">
+          <span class="audience-col__tag">👨‍👩‍👧 Rumah Tangga</span>
+          <span class="audience-col__tag">🛒 Pembelian Langsung</span>
+          <span class="audience-col__tag">📦 Tanpa Minimal Order</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CARA ORDER ═══ -->
+<section class="order" id="cara-order">
+  <div class="container">
+    <div class="order__header">
+      <span class="section-label">Cara Pemesanan</span>
+      <h2 class="section-title">Pesan Mudah, Cepat, Langsung Dikirim</h2>
+      <p class="section-subtitle">Hanya 4 langkah mudah untuk mendapatkan telur segar di lokasi Anda.</p>
+    </div>
+    <div class="order__steps">
+      <div class="order-step">
+        <div class="order-step__num">1</div>
+        <h3 class="order-step__title">Hubungi via WhatsApp</h3>
+        <p class="order-step__text">Chat ke nomor WhatsApp kami. Tanyakan stok, jenis produk, dan harga terkini.</p>
+      </div>
+      <div class="order-step">
+        <div class="order-step__num">2</div>
+        <h3 class="order-step__title">Pilih Produk & Jumlah</h3>
+        <p class="order-step__text">Pilih telur ayam komersial atau telur omega, tentukan jumlah sesuai kebutuhan Anda.</p>
+      </div>
+      <div class="order-step">
+        <div class="order-step__num">3</div>
+        <h3 class="order-step__title">Konfirmasi Pesanan & Alamat</h3>
+        <p class="order-step__text">Konfirmasi detail pesanan dan berikan alamat pengiriman lengkap Anda kepada kami.</p>
+      </div>
+      <div class="order-step">
+        <div class="order-step__num">4</div>
+        <h3 class="order-step__title">Telur Diantarkan ke Lokasi Anda</h3>
+        <p class="order-step__text">Kami antar langsung ke lokasi Anda. Gratis ongkir, telur sampai dalam kondisi segar dan terjamin.</p>
+      </div>
+    </div>
+    <div class="order__cta">
+      <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <i class="fab fa-whatsapp"></i> Mulai Pesan Sekarang
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOCIAL PROOF ═══ -->
+<section class="social-proof" id="mitra">
+  <div class="container">
+    <div class="social-proof__header">
+      <span class="section-label">Dipercaya Ratusan Mitra</span>
+      <h2 class="section-title">200+ Bisnis & Konsumen<br>Sudah Mempercayai Kami</h2>
+      <p class="section-subtitle">Dari UMKM lokal hingga perusahaan katering besar, Mitra Telur Jogja menjadi pilihan utama supplier telur di Yogyakarta.</p>
+    </div>
+    <div class="social-proof__stats">
+      <div class="stat-item">
+        <div class="stat-item__num">200+</div>
+        <div class="stat-item__label">Mitra Aktif</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item__num">100%</div>
+        <div class="stat-item__label">Gratis Ongkir DIY</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item__num">Daily</div>
+        <div class="stat-item__label">Update Harga</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item__num">0</div>
+        <div class="stat-item__label">Minimal Pembelian</div>
+      </div>
+    </div>
+    <div class="partner-tags">
+      <span class="partner-tag">🏫 SPPG</span>
+      <span class="partner-tag">🥘 Katering</span>
+      <span class="partner-tag">🍽️ Restoran</span>
+      <span class="partner-tag">🏪 Grosir</span>
+      <span class="partner-tag">🏢 UMKM</span>
+      <span class="partner-tag">🛒 Retail</span>
+      <span class="partner-tag">🏬 Toko Madura</span>
+    </div>
+    <p class="partner-placeholder-label">Logo & Foto Mitra — Menyusul</p>
+    <div class="partner-placeholder-grid">
+      <div class="partner-ph-item">Logo Mitra<br>Menyusul</div>
+      <div class="partner-ph-item">Logo Mitra<br>Menyusul</div>
+      <div class="partner-ph-item">Logo Mitra<br>Menyusul</div>
+      <div class="partner-ph-item">Logo Mitra<br>Menyusul</div>
+      <div class="partner-ph-item">Logo Mitra<br>Menyusul</div>
+      <div class="partner-ph-item">Logo Mitra<br>Menyusul</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONI ═══ -->
+<section class="testimonials" id="testimoni">
+  <div class="container">
+    <div class="testimonials__header">
+      <span class="section-label">Testimoni Pelanggan</span>
+      <h2 class="section-title">Kata Mereka tentang Mitra Telur Jogja</h2>
+      <p class="section-subtitle">Kepuasan mitra adalah prioritas utama kami. Berikut pengalaman nyata dari pelanggan setia kami.</p>
+    </div>
+    <div class="testimonials__grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__quote">"</div>
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__text">Telurnya selalu berkualitas, sesuai pesanan dan spesifikasi yang kami minta. Sangat membantu operasional dapur kami setiap hari.</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">R</div>
+          <div>
+            <div class="testimonial-card__name">Bu Rina</div>
+            <div class="testimonial-card__type">Pemilik Restoran · Yogyakarta</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__quote">"</div>
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__text">Yang paling saya suka adalah ada garansi kalau telur pecah. Pernah beberapa butir retak, langsung diganti tanpa ribet. Supplier yang amanah!</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" style="background: linear-gradient(135deg,var(--red),var(--orange))">A</div>
+          <div>
+            <div class="testimonial-card__name">Pak Andi</div>
+            <div class="testimonial-card__type">Owner Catering · Bantul</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__quote">"</div>
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__text">Pengiriman cepat dan tepat waktu. Pesan pagi, siang sudah sampai. Sangat cocok untuk kebutuhan harian grosir kami. Harga pun bersaing!</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" style="background: linear-gradient(135deg,#43A047,#66BB6A)">D</div>
+          <div>
+            <div class="testimonial-card__name">Pak Darto</div>
+            <div class="testimonial-card__type">Pemilik Toko Grosir · Sleman</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq__header">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
+      <p class="section-subtitle">Belum menemukan jawaban yang Anda cari? Hubungi kami langsung via WhatsApp.</p>
+    </div>
+    <div class="faq__list">
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)">
+          Apakah ada minimal pembelian?
+          <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">Tidak ada minimal pembelian. Anda bisa memesan berapapun sesuai kebutuhan. Namun, untuk pembelian minimal 1 peti (15 kg), Anda akan mendapatkan harga yang lebih murah dan lebih hemat.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)">
+          Berapa lama proses pengiriman?
+          <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">Pengiriman kami terbilang cepat. Setelah pesanan dikonfirmasi, kami segera memproses dan mengantarkan telur ke lokasi Anda. Untuk wilayah Yogyakarta, biasanya dapat tiba di hari yang sama atau sesuai jadwal pengiriman yang disepakati.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)">
+          Apakah gratis ongkir berlaku untuk semua wilayah?
+          <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">Gratis ongkos kirim berlaku untuk seluruh wilayah Daerah Istimewa Yogyakarta (DIY) dan sekitarnya. Untuk lokasi di luar area tersebut, silakan hubungi kami untuk informasi pengiriman lebih lanjut.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)">
+          Bagaimana jika telur pecah atau retak saat diterima?
+          <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">Kami memberikan garansi untuk telur yang pecah atau retak saat diterima. Cukup informasikan kepada kami segera setelah barang tiba, dan kami akan menggantinya. Kepuasan Anda adalah prioritas kami.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)">
+          Bagaimana cara mengetahui harga terbaru?
+          <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">Harga kami diupdate setiap hari mengikuti harga pasar. Untuk mendapatkan informasi harga terkini, silakan hubungi kami langsung via WhatsApp. Tim kami siap memberikan penawaran terbaik untuk Anda.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)">
+          Apakah tersedia penawaran khusus untuk bisnis (B2B)?
+          <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">Ya! Kami menyediakan penawaran harga spesial untuk pelanggan B2B seperti restoran, hotel, cafe, catering, dan grosir. Hubungi kami via WhatsApp untuk mendiskusikan kerja sama dan penawaran yang sesuai dengan kebutuhan bisnis Anda.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA AKHIR ═══ -->
+<section class="cta-section" id="pesan">
+  <div class="container">
+    <h2 class="cta-section__title">Siap Pesan Telur Segar Hari Ini?</h2>
+    <p class="cta-section__subtitle">
+      Hubungi kami sekarang dan dapatkan telur berkualitas dengan harga terbaik.<br>
+      Gratis ongkir · Garansi kerusakan · Stok selalu tersedia
+    </p>
+    <div class="cta-section__buttons">
+      <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-wa">
+        <i class="fab fa-whatsapp"></i> WA 1 — +62 857-0227-5769
+      </a>
+      <a href="https://wa.me/6285848148108" target="_blank" rel="noopener noreferrer" class="btn btn-wa2">
+        <i class="fab fa-whatsapp"></i> WA 2 — +62 858-4814-8108
+      </a>
+    </div>
+    <div class="cta-section__location">
+      <i class="fas fa-map-marker-alt"></i>
+      Potorono, Banguntapan, Bantul, Yogyakarta
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="data:image/png;base64,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" alt="Mitra Telur Jogja" onerror="this.style.display='none'">
+        <div class="footer__brand-name">Mitra Telur Jogja</div>
+        <p class="footer__tagline">Supplier telur ayam komersial & telur omega terpercaya di Yogyakarta. Stok selalu ada, harga terbaik, pengiriman gratis.</p>
+        <div class="footer__contact">
+          <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i> +62 857-0227-5769
+          </a>
+          <a href="https://wa.me/6285848148108" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i> +62 858-4814-8108
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Navigasi</div>
+        <ul class="footer__links">
+          <li><a href="#keunggulan">Keunggulan</a></li>
+          <li><a href="#produk">Produk</a></li>
+          <li><a href="#cara-order">Cara Order</a></li>
+          <li><a href="#testimoni">Testimoni</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Lokasi</div>
+        <p class="footer__address">
+          <i class="fas fa-map-marker-alt"></i>
+          Potorono, Banguntapan,<br>Bantul, Yogyakarta,<br>Daerah Istimewa Yogyakarta
+        </p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Mitra Telur Jogja. Hak Cipta Dilindungi.</span>
+      <span>Supplier Telur Terpercaya di Yogyakarta</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── HAMBURGER MENU ───
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    menu.classList.toggle('open');
+    icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+  }
+  function closeMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    menu.classList.remove('open');
+    icon.className = 'fas fa-bars';
+  }
+
+  // ─── FAQ ACCORDION ───
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item.open').forEach(function(el) {
+      el.classList.remove('open');
+    });
+    // Open clicked if it was closed
+    if (!isOpen) {
+      item.classList.add('open');
+    }
+  }
+</script>
+
+</body>
+</html>
