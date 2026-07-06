@@ -25,7 +25,7 @@
     }
 
     html { scroll-behavior: smooth; }
-
+ 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--dark);
@@ -402,17 +402,16 @@
     .product-card__img {
       height: 200px;
       background: linear-gradient(135deg, #FFE082, #FFA726);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.85);
-      gap: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
+      overflow: hidden;
+      position: relative;
     }
-    .product-card__img i { font-size: 2.8rem; }
-    .product-card__omega .product-card__img { background: linear-gradient(135deg, #A5D6A7, #43A047); }
+    .product-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .product-card__omega .product-card__img { background: linear-gradient(135deg, #C8E6C9, #43A047); }
     .product-card__body { padding: 24px; }
     .product-card__tag {
       display: inline-block;
@@ -887,7 +886,6 @@
   </nav>
 </header>
 
-<!-- tes edit -->
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <svg class="hero__egg-bg" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
@@ -925,8 +923,7 @@
       <div class="hero__visual">
         <div class="hero__img-wrap">
           <div class="hero__img-placeholder">
-            <i class="fas fa-egg"></i>
-            <p>Foto Produk<br>Menyusul</p>
+            <img src="img/img-3.jpeg">
           </div>
         </div>
       </div>
@@ -1044,8 +1041,7 @@
     <div class="products__grid">
       <div class="product-card">
         <div class="product-card__img">
-          <i class="fas fa-egg"></i>
-          <span>Foto Produk Menyusul</span>
+          <img src="img/egg-komersial.jpg" alt="Telur Ayam Komersial">
         </div>
         <div class="product-card__body">
           <span class="product-card__tag">Telur Komersial</span>
@@ -1059,13 +1055,12 @@
       </div>
       <div class="product-card product-card__omega">
         <div class="product-card__img" style="background: linear-gradient(135deg, #C8E6C9, #43A047)">
-          <i class="fas fa-leaf"></i>
-          <span>Foto Produk Menyusul</span>
+          <img src="img/egg-omega-1.jpeg" alt="Telur Omega">
         </div>
         <div class="product-card__body">
           <span class="product-card__tag">Telur Premium</span>
           <h3 class="product-card__title">Telur Omega</h3>
-          <p class="product-card__desc">Telur ayam kaya omega-3 yang lebih sehat dan bernutrisi tinggi. Pilihan ideal untuk konsumen yang menjaga pola makan sehat atau bisnis yang menyajikan menu premium.</p>
+          <p class="product-card__desc">Telur ayam kaya omega-3 yang lebih sehat dan bernutrisi tinggi yang mempunyai warna orange pada yolk. Pilihan ideal untuk konsumen yang menjaga pola makan sehat atau bisnis yang menyajikan menu premium.</p>
           <p class="product-card__price"><i class="fas fa-sync-alt"></i> Harga diupdate setiap hari — hubungi kami</p>
           <a href="https://wa.me/6285702275769" target="_blank" rel="noopener noreferrer" class="btn btn-wa">
             <i class="fab fa-whatsapp"></i> Tanya Harga
