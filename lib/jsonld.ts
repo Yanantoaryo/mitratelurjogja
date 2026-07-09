@@ -27,6 +27,12 @@ export function organizationSchema(settings: SiteSettings | null) {
     name: settings?.businessName ?? BUSINESS_NAME,
     url: SITE_URL,
     description: settings?.description ?? undefined,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/logo-mtj.png`,
+      width: 842,
+      height: 596,
+    },
     ...(sameAs.length > 0 && { sameAs }),
   };
 }

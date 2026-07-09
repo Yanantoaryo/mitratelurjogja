@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, MessageCircle } from "lucide-react";
 import Container from "./Container";
@@ -20,8 +21,18 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-ink/5 bg-cream/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="font-display text-lg font-extrabold text-ink">
-          Mitra Telur Jogja
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/logo-mtj.png"
+            alt=""
+            width={842}
+            height={596}
+            priority
+            className="h-9 w-auto"
+          />
+          <span className="font-display text-lg font-extrabold text-ink">
+            Mitra Telur Jogja
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">

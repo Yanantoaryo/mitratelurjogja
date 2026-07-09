@@ -2,7 +2,9 @@
 module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://mitratelurjogja.com",
   generateRobotsTxt: true,
-  exclude: ["/studio", "/studio/*"],
+  // `/icon.png` muncul di build manifest karena app/icon.png didaftarkan Next
+  // sebagai rute; itu favicon, bukan halaman untuk diindeks.
+  exclude: ["/studio", "/studio/*", "/icon.png"],
   // `/blog` dirender on-demand karena membaca searchParams, sehingga tidak
   // muncul di build manifest yang dipindai next-sitemap. Tambahkan manual,
   // kalau tidak halaman indeks blog tidak pernah masuk sitemap.
