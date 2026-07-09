@@ -1,5 +1,10 @@
 import { ADDRESS, BUSINESS_NAME, PHONES, SITE_URL } from "@/lib/site";
-import type { GalleryImage, Product, SiteSettings } from "@/sanity/lib/types";
+import type {
+  Article,
+  GalleryImage,
+  Product,
+  SiteSettings,
+} from "@/sanity/lib/types";
 
 /**
  * `facebook` sengaja tidak ikut: nilainya profil pribadi, bukan Page bisnis.
@@ -64,6 +69,34 @@ export function localBusinessSchema(settings: SiteSettings | null) {
       }),
     ...(openingHours?.length && { openingHoursSpecification: openingHours }),
     areaServed: "Daerah Istimewa Yogyakarta",
+  };
+}
+
+export function blogPostingSchema(
+  article: Article,
+  { coverUrl }: { coverUrl?: string } = {}
+) {
+  const url = `${SITE_URL}/blog/${article.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    headline: article.title,
+    description: article.excerpt ?? undefined,
+    url,
+    datePublished: article.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: article.author ?? BUSINESS_NAME,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: BUSINESS_NAME,
+      "@id": `${SITE_URL}/#organization`,
+    },
+    ...(coverUrl && { image: [coverUrl] }),
+    ...(article.category && { articleSection: article.category.title }),
+    ...(article.tags?.length && { keywords: article.tags.join(", ") }),
   };
 }
 

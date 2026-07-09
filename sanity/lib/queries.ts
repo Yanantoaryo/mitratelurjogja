@@ -38,6 +38,60 @@ export const faqsQuery = groq`
   }
 `;
 
+/**
+ * Sanity sudah menyembunyikan draft dari permintaan anonim, dan client kita
+ * memang tanpa token. Filter ini jaring pengaman: begitu ada token
+ * ditambahkan (mis. untuk preview), draft auto-artikel akan langsung
+ * terbaca publik tanpa ini.
+ */
+const PUBLISHED = `!(_id in path("drafts.**")) && defined(publishedAt) && publishedAt <= now()`;
+
+const ARTICLE_FIELDS = `
+  _id, title, "slug": slug.current, excerpt, author, publishedAt,
+  coverImage, "coverAlt": coverImage.alt,
+  "category": category->{ title, "slug": slug.current }
+`;
+
+export const articleCategoriesQuery = groq`
+  *[_type == "articleCategory"] | order(title asc) {
+    _id, title, "slug": slug.current, description
+  }
+`;
+
+/**
+ * $category dan $q boleh null. Pencarian mencakup isi Portable Text lewat
+ * pt::text() agar tidak hanya cocok pada judul.
+ */
+export const articlesQuery = groq`
+  *[
+    _type == "article" && ${PUBLISHED} &&
+    ($category == null || category->slug.current == $category) &&
+    ($q == null || title match $q || excerpt match $q || pt::text(body) match $q)
+  ] | order(publishedAt desc) {
+    ${ARTICLE_FIELDS}
+  }
+`;
+
+export const articleSlugsQuery = groq`
+  *[_type == "article" && ${PUBLISHED}][].slug.current
+`;
+
+export const articleBySlugQuery = groq`
+  *[_type == "article" && ${PUBLISHED} && slug.current == $slug][0] {
+    ${ARTICLE_FIELDS},
+    body, tags, source
+  }
+`;
+
+export const relatedArticlesQuery = groq`
+  *[
+    _type == "article" && ${PUBLISHED} && slug.current != $slug &&
+    category->slug.current == $category
+  ] | order(publishedAt desc)[0...3] {
+    ${ARTICLE_FIELDS}
+  }
+`;
+
 export const galleryImagesQuery = groq`
   *[_type == "galleryImage" && defined(image.asset)] | order(${BY_ORDER}) {
     _id, title, category, takenAt,

@@ -37,6 +37,42 @@ export interface Faq {
   answer: string;
 }
 
+export interface ArticleCategory {
+  _id: string;
+  title: string;
+  slug: string;
+  description?: string;
+}
+
+export interface ArticleSummary {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  coverImage?: SanityImageSource;
+  coverAlt?: string;
+  author?: string;
+  publishedAt: string;
+  category?: { title: string; slug: string };
+}
+
+export interface Article extends ArticleSummary {
+  /** Blok Portable Text; bentuknya ditentukan schema `body`. */
+  body?: PortableTextBlock[];
+  tags?: string[];
+  source?: "manual" | "claude-ai";
+}
+
+/**
+ * Bentuk minimum yang dituntut @portabletext/react (`TypedObject`): `_type`
+ * wajib, sisanya bebas karena `body` boleh berisi block maupun image.
+ */
+export interface PortableTextBlock {
+  _type: string;
+  _key?: string;
+  [key: string]: unknown;
+}
+
 export interface GalleryImage {
   _id: string;
   title: string;
