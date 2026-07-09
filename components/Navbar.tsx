@@ -4,16 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, MessageCircle } from "lucide-react";
 import Container from "./Container";
+import { WA_URL } from "@/lib/site";
 
 const NAV_LINKS = [
   { href: "/#keunggulan", label: "Keunggulan" },
-  { href: "/#produk", label: "Produk" },
+  { href: "/produk", label: "Produk" },
   { href: "/blog", label: "Blog" },
   { href: "/galeri", label: "Galeri" },
   { href: "/#faq", label: "FAQ" },
 ];
-
-const WA_URL = "https://wa.me/6285702275769";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
