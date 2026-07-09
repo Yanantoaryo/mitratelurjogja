@@ -44,7 +44,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink-mid transition hover:border-brand-orange hover:text-brand-orange"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink-mid transition hover:border-brand-orange hover:text-brand-rust"
               >
                 {Icon ? <Icon size={18} /> : <span className="text-xs font-bold">TT</span>}
               </a>
@@ -55,11 +55,11 @@ export default function Footer() {
 
       <div className="border-t border-ink/10 py-4 text-center text-xs text-ink-muted">
         © {new Date().getFullYear()} Mitra Telur Jogja ·{" "}
-        <Link href="/tentang" className="hover:text-brand-orange">
+        <Link href="/tentang" className="hover:text-brand-rust">
           Tentang
         </Link>{" "}
         ·{" "}
-        <Link href="/kontak" className="hover:text-brand-orange">
+        <Link href="/kontak" className="hover:text-brand-rust">
           Kontak
         </Link>
       </div>

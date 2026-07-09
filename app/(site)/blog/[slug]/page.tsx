@@ -101,7 +101,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
       <Container className="max-w-3xl">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-medium text-ink-mid transition hover:text-brand-orange"
+          className="inline-flex items-center gap-2 text-sm font-medium text-ink-mid transition hover:text-brand-rust"
         >
           <ArrowLeft size={16} aria-hidden /> Semua artikel
         </Link>
@@ -111,7 +111,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
             {article.category && (
               <Link
                 href={`/blog?kategori=${article.category.slug}`}
-                className="rounded-brand bg-brand-orange/10 px-2 py-1 font-bold text-brand-orange hover:underline"
+                className="rounded-brand bg-brand-orange/10 px-2 py-1 font-bold text-brand-rust hover:underline"
               >
                 {article.category.title}
               </Link>

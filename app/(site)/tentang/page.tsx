@@ -41,11 +41,13 @@ export default async function TentangPage() {
             Supplier telur yang bisa diandalkan setiap hari
           </h1>
 
+          {/* Dirender setinggi 112px (h-28), lebar ~158px; ini 2x-nya. */}
           <Image
             src="/logo-mtj.png"
             alt="Logo Mitra Telur Jogja"
-            width={842}
-            height={596}
+            width={316}
+            height={224}
+            sizes="158px"
             className="mt-8 h-28 w-auto"
           />
 
@@ -76,7 +78,7 @@ export default async function TentangPage() {
                 >
                   <dt className="sr-only">{stat.label}</dt>
                   <dd>
-                    <span className="block font-display text-3xl font-extrabold text-brand-orange">
+                    <span className="block font-display text-3xl font-extrabold text-brand-rust">
                       {stat.value}
                     </span>
                     <span className="mt-1 block text-sm text-ink-mid">
@@ -100,7 +102,7 @@ export default async function TentangPage() {
                   key={item._id}
                   className="rounded-brand border border-ink/10 bg-white p-6"
                 >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-orange/10 text-brand-orange">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-orange/10 text-brand-rust">
                     <Icon name={item.icon} />
                   </span>
                   <h3 className="mt-4 font-bold text-ink">{item.title}</h3>

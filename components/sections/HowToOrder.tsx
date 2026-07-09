@@ -41,7 +41,7 @@ export default function HowToOrder() {
               key={step.title}
               className="rounded-brand border border-ink/10 bg-white p-6"
             >
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-orange font-display text-lg font-extrabold text-white">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-orange font-display text-lg font-extrabold text-ink">
                 {i + 1}
               </span>
               <h3 className="mt-4 font-bold text-ink">{step.title}</h3>

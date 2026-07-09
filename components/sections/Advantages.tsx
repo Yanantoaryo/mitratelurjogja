@@ -21,7 +21,7 @@ export default function Advantages({ items }: { items: Advantage[] }) {
               key={item._id}
               className="rounded-brand border border-ink/10 bg-white p-6 transition hover:shadow-brand"
             >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-orange/10 text-brand-orange">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-orange/10 text-brand-rust">
                 <Icon name={item.icon} />
               </span>
               <h3 className="mt-4 font-bold text-ink">{item.title}</h3>

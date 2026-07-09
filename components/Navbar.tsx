@@ -22,12 +22,18 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-ink/5 bg-cream/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
+          {/*
+            Dirender setinggi 36px (h-9), lebar ~51px. Intrinsic 842x596 membuat
+            browser memilih varian srcset yang jauh lebih besar dari kebutuhan.
+            Ukuran di bawah adalah 2x ukuran tampil, cukup untuk layar retina.
+          */}
           <Image
             src="/logo-mtj.png"
             alt=""
-            width={842}
-            height={596}
+            width={102}
+            height={72}
             priority
+            sizes="51px"
             className="h-9 w-auto"
           />
           <span className="font-display text-lg font-extrabold text-ink">
@@ -40,7 +46,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-medium text-ink-mid transition hover:text-brand-orange"
+              className="text-sm font-medium text-ink-mid transition hover:text-brand-rust"
             >
               {l.label}
             </Link>
@@ -57,16 +63,23 @@ export default function Navbar() {
         </a>
 
         <button
-          className="md:hidden"
-          aria-label="Menu"
+          type="button"
+          className="focus-ring rounded-brand p-1 md:hidden"
+          aria-label={open ? "Tutup menu" : "Buka menu"}
+          aria-expanded={open}
+          aria-controls="menu-mobile"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X /> : <Menu />}
+          {open ? <X aria-hidden /> : <Menu aria-hidden />}
         </button>
       </Container>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-ink/5 bg-cream px-6 py-4 md:hidden">
+        <nav
+          id="menu-mobile"
+          aria-label="Menu utama"
+          className="flex flex-col gap-1 border-t border-ink/5 bg-cream px-6 py-4 md:hidden"
+        >
           {NAV_LINKS.map((l) => (
             <Link
               key={l.href}

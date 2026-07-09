@@ -44,7 +44,7 @@ const components: PortableTextComponents = {
       const isExternal = /^https?:\/\//.test(href);
       if (!isExternal) {
         return (
-          <Link href={href} className="text-brand-orange hover:underline">
+          <Link href={href} className="text-brand-rust hover:underline">
             {children}
           </Link>
         );
@@ -54,7 +54,7 @@ const components: PortableTextComponents = {
           href={href}
           target="_blank"
           rel="noopener noreferrer nofollow"
-          className="text-brand-orange hover:underline"
+          className="text-brand-rust hover:underline"
         >
           {children}
         </a>

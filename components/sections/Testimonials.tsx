@@ -7,7 +7,7 @@ import type { Testimonial } from "@/sanity/lib/types";
 function Rating({ value }: { value: number }) {
   return (
     <p
-      className="flex gap-0.5 text-brand-yellow"
+      className="flex gap-0.5 text-brand-gold"
       aria-label={`Rating ${value} dari 5`}
     >
       {Array.from({ length: 5 }, (_, i) => (
@@ -57,7 +57,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
                 ) : (
                   <span
                     aria-hidden
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-orange/10 font-display font-extrabold text-brand-orange"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-orange/10 font-display font-extrabold text-brand-rust"
                   >
                     {item.name.charAt(0)}
                   </span>

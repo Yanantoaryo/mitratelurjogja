@@ -44,7 +44,7 @@ export default function Stats({ settings }: { settings: SiteSettings | null }) {
             >
               <dt className="sr-only">{stat.label}</dt>
               <dd>
-                <span className="block font-display text-3xl font-extrabold text-brand-orange">
+                <span className="block font-display text-3xl font-extrabold text-brand-rust">
                   {stat.value}
                 </span>
                 <span className="mt-1 block text-sm text-ink-mid">

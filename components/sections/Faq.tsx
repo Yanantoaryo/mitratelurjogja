@@ -17,7 +17,7 @@ export default function Faq({ items }: { items: FaqType[] }) {
             href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-brand-orange hover:underline"
+            className="font-medium text-brand-rust hover:underline"
           >
             Hubungi kami langsung via WhatsApp.
           </a>

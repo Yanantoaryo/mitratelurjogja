@@ -52,8 +52,8 @@ export default async function BlogPage({
   const chipClass = (active: boolean) =>
     `rounded-brand px-4 py-2 text-sm font-medium transition ${
       active
-        ? "bg-brand-orange text-white"
-        : "border border-ink/15 bg-white text-ink-mid hover:border-brand-orange hover:text-brand-orange"
+        ? "bg-brand-orange text-ink"
+        : "border border-ink/15 bg-white text-ink-mid hover:border-brand-orange hover:text-brand-rust"
     }`;
 
   return (
@@ -115,7 +115,7 @@ export default async function BlogPage({
               </>
             )}
             .{" "}
-            <Link href="/blog" className="text-brand-orange hover:underline">
+            <Link href="/blog" className="text-brand-rust hover:underline">
               Reset filter
             </Link>
           </p>

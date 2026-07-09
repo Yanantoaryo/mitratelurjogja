@@ -29,7 +29,7 @@ export default function OpeningHours({
 
         <div className="mt-8 max-w-2xl overflow-hidden rounded-brand border border-ink/10 bg-white">
           <div className="flex flex-wrap items-center gap-3 border-b border-ink/10 px-6 py-4">
-            <Clock size={18} aria-hidden className="text-brand-orange" />
+            <Clock size={18} aria-hidden className="text-brand-rust" />
             <span
               className={`inline-flex items-center gap-2 rounded-brand px-3 py-1 text-xs font-bold ${
                 open

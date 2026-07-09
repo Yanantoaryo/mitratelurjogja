@@ -43,7 +43,7 @@ export default function ShareButtons({
   }
 
   const linkClass =
-    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink-mid transition hover:border-brand-orange hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange";
+    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink-mid transition hover:border-brand-orange hover:text-brand-rust focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-rust";
 
   return (
     <div className="flex flex-wrap items-center gap-3">

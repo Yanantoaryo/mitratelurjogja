@@ -53,7 +53,7 @@ export default function Problem() {
         </ul>
 
         <div className="mt-10 rounded-brand bg-white px-6 py-6 shadow-brand">
-          <p className="font-display text-xl font-extrabold text-brand-orange">
+          <p className="font-display text-xl font-extrabold text-brand-rust">
             Kami hadir sebagai solusi.
           </p>
           <p className="mt-2 text-ink-mid">

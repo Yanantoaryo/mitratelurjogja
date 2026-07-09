@@ -82,7 +82,7 @@ export default async function KontakPage() {
 
             <dl className="mt-6 space-y-5">
               <div className="flex gap-3">
-                <MapPin size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-orange" />
+                <MapPin size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-rust" />
                 <div>
                   <dt className="text-sm font-bold text-ink">Alamat</dt>
                   <dd className="text-sm text-ink-mid">{address}</dd>
@@ -90,7 +90,7 @@ export default async function KontakPage() {
               </div>
 
               <div className="flex gap-3">
-                <Phone size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-orange" />
+                <Phone size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-rust" />
                 <div>
                   <dt className="text-sm font-bold text-ink">WhatsApp</dt>
                   <dd className="space-y-1 text-sm">
@@ -100,7 +100,7 @@ export default async function KontakPage() {
                         href={`https://wa.me/${p.replace(/\D/g, "")}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block text-ink-mid hover:text-brand-orange"
+                        className="block text-ink-mid hover:text-brand-rust"
                       >
                         {prettyPhone(p)}
                       </a>
@@ -111,7 +111,7 @@ export default async function KontakPage() {
 
               {hours?.length ? (
                 <div className="flex gap-3">
-                  <Clock size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-orange" />
+                  <Clock size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-rust" />
                   <div>
                     <dt className="text-sm font-bold text-ink">Jam Operasional</dt>
                     <dd className="space-y-1 text-sm text-ink-mid">
@@ -127,7 +127,7 @@ export default async function KontakPage() {
 
               {settings?.socials?.instagram && (
                 <div className="flex gap-3">
-                  <Mail size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-orange" />
+                  <Mail size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-rust" />
                   <div>
                     <dt className="text-sm font-bold text-ink">Media Sosial</dt>
                     <dd className="text-sm">
@@ -135,7 +135,7 @@ export default async function KontakPage() {
                         href={settings.socials.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-ink-mid hover:text-brand-orange"
+                        className="text-ink-mid hover:text-brand-rust"
                       >
                         Instagram
                       </a>

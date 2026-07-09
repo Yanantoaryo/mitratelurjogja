@@ -39,7 +39,7 @@ export default function Audience() {
               <span aria-hidden className="text-3xl">
                 {segment.emoji}
               </span>
-              <p className="mt-3 text-xs font-bold uppercase tracking-[0.12em] text-brand-orange">
+              <p className="mt-3 text-xs font-bold uppercase tracking-[0.12em] text-brand-rust">
                 {segment.kicker}
               </p>
               <h3 className="mt-1 font-display text-xl font-extrabold text-ink">

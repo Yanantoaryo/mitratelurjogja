@@ -35,7 +35,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-display text-xl font-extrabold text-ink">
-          <Link href={`/produk/${slug}`} className="hover:text-brand-orange">
+          <Link href={`/produk/${slug}`} className="hover:text-brand-rust">
             {name}
           </Link>
         </h3>
@@ -46,7 +46,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
         <div className="mt-4 flex-1">
           {typeof price === "number" ? (
-            <p className="font-display text-2xl font-extrabold text-brand-orange">
+            <p className="font-display text-2xl font-extrabold text-brand-rust">
               {formatPrice(price)}
               {unit && (
                 <span className="ml-1 text-sm font-medium text-ink-muted">

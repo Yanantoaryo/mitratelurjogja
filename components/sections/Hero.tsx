@@ -24,7 +24,7 @@ export default function Hero() {
         <p className="section-label">Potorono, Bantul, Yogyakarta</p>
         <h1 className="font-display text-4xl font-extrabold leading-[1.1] text-ink md:text-6xl">
           Supplier Telur{" "}
-          <em className="not-italic text-brand-orange">Segar &amp; Terpercaya</em>{" "}
+          <em className="not-italic text-brand-rust">Segar &amp; Terpercaya</em>{" "}
           di Yogyakarta
         </h1>
         <p className="mt-5 max-w-xl text-lg text-ink-mid">
@@ -51,7 +51,7 @@ export default function Hero() {
               key={label}
               className="flex items-center gap-2 rounded-brand bg-white px-4 py-2 text-sm font-medium text-ink-mid shadow-brand"
             >
-              <BadgeIcon size={16} className="text-brand-orange" /> {label}
+              <BadgeIcon size={16} className="text-brand-rust" /> {label}
             </span>
           ))}
         </div>

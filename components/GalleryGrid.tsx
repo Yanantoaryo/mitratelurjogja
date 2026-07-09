@@ -5,10 +5,15 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryImage } from "@/sanity/lib/types";
 
+const FOCUSABLE = "button, a[href], [tabindex]:not([tabindex='-1'])";
+
 export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  const isOpen = openIndex !== null;
 
   const close = useCallback(() => setOpenIndex(null), []);
   const go = useCallback(
@@ -20,13 +25,42 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
   );
 
   useEffect(() => {
-    if (openIndex === null) return;
+    if (!isOpen) return;
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowRight") go(1);
-      else if (e.key === "ArrowLeft") go(-1);
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key === "ArrowRight") {
+        go(1);
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        go(-1);
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      // aria-modal hanya memberi tahu screen reader; ia tidak menahan Tab.
+      // Tanpa jebakan ini, fokus keyboard menyelinap ke halaman di balik
+      // overlay, tempat pengguna tidak bisa melihat apa yang sedang terfokus.
+      const nodes = dialogRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE);
+      if (!nodes?.length) return;
+
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      const active = document.activeElement;
+
+      if (e.shiftKey && (active === first || !dialogRef.current?.contains(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
+
     document.addEventListener("keydown", onKey);
 
     // Cegah halaman di belakang ikut ter-scroll saat lightbox terbuka.
@@ -40,7 +74,10 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
       // Kembalikan fokus ke thumbnail yang membuka lightbox.
       triggerRef.current?.focus();
     };
-  }, [openIndex, close, go]);
+    // Sengaja bergantung pada `isOpen`, bukan `openIndex`: memakai openIndex
+    // membuat efek ini dijalankan ulang setiap kali panah ditekan, sehingga
+    // fokus dilempar kembali ke tombol tutup di tiap perpindahan foto.
+  }, [isOpen, close, go]);
 
   const current = openIndex === null ? null : images[openIndex];
 
@@ -55,7 +92,7 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
                 triggerRef.current = e.currentTarget;
                 setOpenIndex(i);
               }}
-              className="group relative block w-full overflow-hidden rounded-brand border border-ink/10 bg-cream-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange"
+              className="group relative block w-full overflow-hidden rounded-brand border border-ink/10 bg-cream-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-rust"
               aria-label={`Perbesar foto: ${img.title}`}
             >
               <span className="relative block aspect-[4/3]">
@@ -79,6 +116,7 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
 
       {current && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={current.title}

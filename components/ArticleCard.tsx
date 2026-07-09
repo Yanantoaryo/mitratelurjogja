@@ -29,7 +29,7 @@ export default function ArticleCard({ article }: { article: ArticleSummary }) {
       <div className="flex flex-1 flex-col p-6">
         <p className="flex flex-wrap items-center gap-2 text-xs text-ink-muted">
           {category && (
-            <span className="rounded-brand bg-brand-orange/10 px-2 py-1 font-bold text-brand-orange">
+            <span className="rounded-brand bg-brand-orange/10 px-2 py-1 font-bold text-brand-rust">
               {category.title}
             </span>
           )}
@@ -37,7 +37,7 @@ export default function ArticleCard({ article }: { article: ArticleSummary }) {
         </p>
 
         <h2 className="mt-3 font-display text-lg font-extrabold leading-snug text-ink">
-          <Link href={`/blog/${slug}`} className="hover:text-brand-orange">
+          <Link href={`/blog/${slug}`} className="hover:text-brand-rust">
             {title}
           </Link>
         </h2>
@@ -50,7 +50,7 @@ export default function ArticleCard({ article }: { article: ArticleSummary }) {
 
         <Link
           href={`/blog/${slug}`}
-          className="mt-4 text-sm font-bold text-brand-orange hover:underline"
+          className="mt-4 text-sm font-bold text-brand-rust hover:underline"
         >
           Baca selengkapnya
         </Link>

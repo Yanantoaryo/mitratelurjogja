@@ -9,8 +9,14 @@ export default function SiteLayout({
 }) {
   return (
     <>
+      {/* Pengguna keyboard bisa melompati navigasi tanpa menekan Tab belasan kali. */}
+      <a href="#konten" className="skip-link">
+        Lompat ke konten utama
+      </a>
       <Navbar />
-      <main>{children}</main>
+      <main id="konten" tabIndex={-1}>
+        {children}
+      </main>
       <Footer />
       {/*
         Dipasang di layout (site), bukan root layout: root membungkus /studio

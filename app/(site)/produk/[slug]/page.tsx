@@ -86,7 +86,7 @@ export default async function ProductDetailPage({
       <Container>
         <Link
           href="/produk"
-          className="inline-flex items-center gap-2 text-sm font-medium text-ink-mid transition hover:text-brand-orange"
+          className="inline-flex items-center gap-2 text-sm font-medium text-ink-mid transition hover:text-brand-rust"
         >
           <ArrowLeft size={16} aria-hidden /> Semua produk
         </Link>
@@ -126,7 +126,7 @@ export default async function ProductDetailPage({
 
             <div className="mt-8">
               {hasPrice ? (
-                <p className="font-display text-4xl font-extrabold text-brand-orange">
+                <p className="font-display text-4xl font-extrabold text-brand-rust">
                   {formatPrice(price)}
                   {unit && (
                     <span className="ml-2 text-base font-medium text-ink-muted">
