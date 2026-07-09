@@ -37,6 +37,18 @@ export interface Faq {
   answer: string;
 }
 
+export interface GalleryImage {
+  _id: string;
+  title: string;
+  alt?: string;
+  category?: string;
+  takenAt?: string;
+  url: string;
+  lqip?: string;
+  width: number;
+  height: number;
+}
+
 export interface OpeningHours {
   days?: string[];
   opens?: string;

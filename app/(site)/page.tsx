@@ -5,6 +5,7 @@ import Faq from "@/components/sections/Faq";
 import FinalCta from "@/components/sections/FinalCta";
 import Hero from "@/components/sections/Hero";
 import HowToOrder from "@/components/sections/HowToOrder";
+import OpeningHours from "@/components/sections/OpeningHours";
 import Problem from "@/components/sections/Problem";
 import Products from "@/components/sections/Products";
 import Stats from "@/components/sections/Stats";
@@ -47,6 +48,7 @@ export default async function HomePage() {
       <Products items={products} />
       <Audience />
       <HowToOrder />
+      <OpeningHours settings={settings} />
       <Stats settings={settings} />
       <Testimonials items={testimonials} />
       <Faq items={faqs} />

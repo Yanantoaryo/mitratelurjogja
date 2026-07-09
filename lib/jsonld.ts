@@ -1,9 +1,14 @@
 import { ADDRESS, BUSINESS_NAME, PHONES, SITE_URL } from "@/lib/site";
-import type { Product, SiteSettings } from "@/sanity/lib/types";
+import type { GalleryImage, Product, SiteSettings } from "@/sanity/lib/types";
 
+/**
+ * `facebook` sengaja tidak ikut: nilainya profil pribadi, bukan Page bisnis.
+ * Mengklaimnya lewat sameAs berarti memberi tahu Google bahwa profil itu
+ * kanal resmi perusahaan. Tautannya tetap tampil di Footer.
+ */
 function socialUrls(settings: SiteSettings | null): string[] {
   const s = settings?.socials;
-  return [s?.instagram, s?.facebook, s?.tiktok].filter(
+  return [s?.instagram, s?.tiktok].filter(
     (u): u is string => typeof u === "string" && u.length > 0
   );
 }
@@ -59,6 +64,26 @@ export function localBusinessSchema(settings: SiteSettings | null) {
       }),
     ...(openingHours?.length && { openingHoursSpecification: openingHours }),
     areaServed: "Daerah Istimewa Yogyakarta",
+  };
+}
+
+export function imageGallerySchema(images: GalleryImage[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    name: "Galeri Aktivitas Mitra Telur Jogja",
+    url: `${SITE_URL}/galeri`,
+    image: images.map((img) => ({
+      "@type": "ImageObject",
+      contentUrl: img.url,
+      name: img.title,
+      // `caption` memakai alt: itu deskripsi isi gambar, yang memang diminta
+      // schema.org, sementara `name` adalah judul singkat.
+      caption: img.alt ?? img.title,
+      width: img.width,
+      height: img.height,
+      ...(img.takenAt && { datePublished: img.takenAt }),
+    })),
   };
 }
 

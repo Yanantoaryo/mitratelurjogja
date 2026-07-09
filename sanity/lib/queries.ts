@@ -38,6 +38,17 @@ export const faqsQuery = groq`
   }
 `;
 
+export const galleryImagesQuery = groq`
+  *[_type == "galleryImage" && defined(image.asset)] | order(${BY_ORDER}) {
+    _id, title, category, takenAt,
+    "alt": image.alt,
+    "url": image.asset->url,
+    "lqip": image.asset->metadata.lqip,
+    "width": image.asset->metadata.dimensions.width,
+    "height": image.asset->metadata.dimensions.height
+  }
+`;
+
 export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0] {
     businessName, tagline, description, address, geo, phones,
