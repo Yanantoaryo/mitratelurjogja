@@ -1,6 +1,7 @@
 import { ADDRESS, BUSINESS_NAME, PHONES, SITE_URL } from "@/lib/site";
 import type {
   Article,
+  Faq,
   GalleryImage,
   Product,
   SiteSettings,
@@ -75,6 +76,37 @@ export function localBusinessSchema(settings: SiteSettings | null) {
       }),
     ...(openingHours?.length && { openingHoursSpecification: openingHours }),
     areaServed: "Daerah Istimewa Yogyakarta",
+  };
+}
+
+export function faqPageSchema(faqs: Faq[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+}
+
+/**
+ * Item terakhir sengaja tanpa `item`: halaman saat ini tidak menautkan ke
+ * dirinya sendiri, dan Google memang mengharapkan trail terakhir tanpa URL.
+ */
+export function breadcrumbSchema(
+  trail: { name: string; path?: string }[]
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map((crumb, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: crumb.name,
+      ...(crumb.path && { item: `${SITE_URL}${crumb.path}` }),
+    })),
   };
 }
 

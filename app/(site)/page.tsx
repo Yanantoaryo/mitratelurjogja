@@ -10,7 +10,11 @@ import Problem from "@/components/sections/Problem";
 import Products from "@/components/sections/Products";
 import Stats from "@/components/sections/Stats";
 import Testimonials from "@/components/sections/Testimonials";
-import { localBusinessSchema, organizationSchema } from "@/lib/jsonld";
+import {
+  faqPageSchema,
+  localBusinessSchema,
+  organizationSchema,
+} from "@/lib/jsonld";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   advantagesQuery,
@@ -41,6 +45,7 @@ export default async function HomePage() {
     <>
       <JsonLd data={organizationSchema(settings)} />
       <JsonLd data={localBusinessSchema(settings)} />
+      {faqs.length > 0 && <JsonLd data={faqPageSchema(faqs)} />}
 
       <Hero />
       <Problem />

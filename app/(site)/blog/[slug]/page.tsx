@@ -9,7 +9,7 @@ import Container from "@/components/Container";
 import JsonLd from "@/components/JsonLd";
 import ShareButtons from "@/components/ShareButtons";
 import { formatDate } from "@/lib/format";
-import { blogPostingSchema } from "@/lib/jsonld";
+import { blogPostingSchema, breadcrumbSchema } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/site";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
@@ -83,6 +83,19 @@ export default async function ArticlePage({ params }: { params: Params }) {
     <article className="py-16 md:py-20">
       <JsonLd
         data={blogPostingSchema(article, { coverUrl: coverUrl(article, 1200, 630) })}
+      />
+      {/*
+        Kategori tidak dijadikan langkah breadcrumb: /blog?kategori=... adalah
+        irisan dari /blog dan canonical-nya menunjuk ke sana, sehingga
+        mengklaimnya sebagai halaman tersendiri akan bertentangan dengan
+        canonical yang kita kirim.
+      */}
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Beranda", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: article.title },
+        ])}
       />
 
       <Container className="max-w-3xl">

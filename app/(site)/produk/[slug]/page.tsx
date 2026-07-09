@@ -6,7 +6,7 @@ import { ArrowLeft, MessageCircle } from "lucide-react";
 import Container from "@/components/Container";
 import JsonLd from "@/components/JsonLd";
 import { formatPrice } from "@/lib/format";
-import { productSchema } from "@/lib/jsonld";
+import { breadcrumbSchema, productSchema } from "@/lib/jsonld";
 import { SITE_URL, waLink } from "@/lib/site";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { productBySlugQuery, productSlugsQuery } from "@/sanity/lib/queries";
@@ -76,6 +76,13 @@ export default async function ProductDetailPage({
   return (
     <section className="py-16 md:py-20">
       <JsonLd data={productSchema(product)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Beranda", path: "/" },
+          { name: "Produk", path: "/produk" },
+          { name },
+        ])}
+      />
       <Container>
         <Link
           href="/produk"
