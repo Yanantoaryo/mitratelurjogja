@@ -92,6 +92,21 @@ export const relatedArticlesQuery = groq`
   }
 `;
 
+/**
+ * Sumber sitemap. `_updatedAt` dipakai sebagai lastModified agar crawler tahu
+ * kapan halaman benar-benar berubah. Artikel memakai filter PUBLISHED yang
+ * sama dengan halaman publik, sehingga artikel terjadwal baru masuk sitemap
+ * ketika tanggal terbitnya sudah lewat.
+ */
+export const sitemapEntriesQuery = groq`{
+  "articles": *[_type == "article" && ${PUBLISHED}] | order(publishedAt desc) {
+    "slug": slug.current, _updatedAt
+  },
+  "products": *[_type == "product" && defined(slug.current) && !(_id in path("drafts.**"))] {
+    "slug": slug.current, _updatedAt
+  }
+}`;
+
 export const galleryImagesQuery = groq`
   *[_type == "galleryImage" && defined(image.asset)] | order(${BY_ORDER}) {
     _id, title, category, takenAt,
