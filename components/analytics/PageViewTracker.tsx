@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 declare global {
@@ -21,11 +21,19 @@ declare global {
  * seluruh pohon di atasnya dirender on demand, dan tanpa boundary itu setiap
  * halaman statis kita kehilangan prerender-nya.
  */
-export default function PageViewTracker({ gaId }: { gaId: string }) {
+export default function PageViewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // page_view pertama sudah dikirim skrip init, yang urutannya terhadap gtag
+  // dijamin. Mengirimnya lagi di sini akan menghitung ganda halaman pertama.
+  const skipFirst = useRef(true);
+
   useEffect(() => {
+    if (skipFirst.current) {
+      skipFirst.current = false;
+      return;
+    }
     if (!window.gtag) return;
 
     const query = searchParams.toString();
@@ -36,7 +44,7 @@ export default function PageViewTracker({ gaId }: { gaId: string }) {
       page_location: window.location.href,
       page_title: document.title,
     });
-  }, [pathname, searchParams, gaId]);
+  }, [pathname, searchParams]);
 
   return null;
 }

@@ -6,7 +6,11 @@ import type { Testimonial } from "@/sanity/lib/types";
 
 function Rating({ value }: { value: number }) {
   return (
+    // role="img" wajib: aria-label dilarang pada <p> tanpa role, dan screen
+    // reader akan mengabaikannya sepenuhnya. Lima bintang ini bersama-sama
+    // membentuk satu gambar bermakna, bukan lima gambar terpisah.
     <p
+      role="img"
       className="flex gap-0.5 text-brand-gold"
       aria-label={`Rating ${value} dari 5`}
     >

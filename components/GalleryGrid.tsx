@@ -103,6 +103,9 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   placeholder={img.lqip ? "blur" : "empty"}
                   blurDataURL={img.lqip}
+                  // Foto pertama adalah elemen LCP halaman ini. Tanpa priority
+                  // ia dimuat lazy dan LCP menunggu giliran unduhannya.
+                  priority={i === 0}
                   className="object-cover transition duration-300 group-hover:scale-105"
                 />
               </span>
