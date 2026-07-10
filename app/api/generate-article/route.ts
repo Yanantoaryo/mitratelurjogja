@@ -8,12 +8,13 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * Diukur secara lokal: satu kali jalan Opus 4.8 memakan 56 detik. Itu sudah
- * dekat sekali dengan batas 60 detik paket Vercel Hobby, dan durasinya
- * bergantung pada panjang artikel serta latensi API — bukan angka tetap.
+ * Diukur secara lokal: satu kali jalan Opus 4.8 memakan 32 dan 56 detik pada
+ * dua kesempatan. Durasinya bergantung pada panjang artikel dan latensi API,
+ * bukan angka tetap.
  *
- * Batas ini hanya dihormati bila paket Vercel mengizinkannya. Tanpa deklarasi
- * ini, fungsi serverless dipotong jauh lebih awal daripada 56 detik.
+ * 300 detik adalah default sekaligus maksimum pada paket Vercel Hobby dengan
+ * fluid compute, jadi nilai ini aman di semua paket. Melewatinya menghasilkan
+ * FUNCTION_INVOCATION_TIMEOUT (504).
  */
 export const maxDuration = 300;
 
