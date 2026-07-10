@@ -7,6 +7,16 @@ import { getWriteClient } from "@/sanity/lib/writeClient";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+/**
+ * Diukur secara lokal: Opus 4.8 selesai dalam 56 detik, Fable 5 dalam 75 detik.
+ * Fable 5 berpikir lebih lama dan pada tugas berat bisa berjalan beberapa menit.
+ *
+ * Batas ini hanya berlaku bila paket Vercel mengizinkannya. Paket Hobby
+ * membatasi fungsi serverless di 60 detik, yang lebih pendek dari satu kali
+ * jalan Fable 5 yang berhasil sekalipun.
+ */
+export const maxDuration = 300;
+
 /** Brief aktif yang paling lama tidak dipakai; yang belum pernah dipakai didahulukan. */
 const nextBriefQuery = groq`
   *[_type == "topicBrief" && active == true] | order(coalesce(lastUsedAt, "1970-01-01") asc)[0] {
@@ -157,14 +167,24 @@ async function handler(request: Request) {
 
   let generated: GeneratedArticle;
   try {
-    const message = await anthropic.messages.create({
-      model: "claude-opus-4-8",
+    const message = await anthropic.beta.messages.create({
+      model: "claude-fable-5",
       max_tokens: 16000,
-      thinking: { type: "adaptive" },
+      // `thinking` sengaja tidak dikirim. Di Fable 5 thinking selalu menyala;
+      // konfigurasi eksplisit selain adaptive ditolak 400. Kedalamannya
+      // dikendalikan lewat output_config.effort.
       output_config: {
         effort: "medium",
         format: { type: "json_schema", schema: ARTICLE_SCHEMA },
       },
+      /**
+       * Fable 5 menjalankan classifier keamanan yang kadang menolak permintaan
+       * sah. Tanpa fallback, penolakan berarti cron gagal tanpa artikel.
+       * Server menjalankan ulang request yang sama pada model pengganti dalam
+       * satu panggilan; penolakan sebelum ada output tidak ditagih.
+       */
+      betas: ["server-side-fallback-2026-06-01"],
+      fallbacks: [{ model: "claude-opus-4-8" }],
       system: SYSTEM_PROMPT,
       messages: [
         {
@@ -183,13 +203,24 @@ async function handler(request: Request) {
       ],
     });
 
+    // Penolakan datang sebagai HTTP 200 dengan content kosong atau parsial.
+    // Cek stop_reason sebelum membaca content, bukan sesudah.
     if (message.stop_reason === "refusal") {
-      console.error("generate-article: model menolak", message.stop_details);
+      console.error(
+        "generate-article: seluruh rantai model menolak",
+        message.stop_details
+      );
       return NextResponse.json({ error: "Permintaan ditolak" }, { status: 422 });
     }
     if (message.stop_reason === "max_tokens") {
       console.error("generate-article: output terpotong max_tokens");
       return NextResponse.json({ error: "Output terpotong" }, { status: 502 });
+    }
+
+    // Model pengganti ikut berjalan bila yang utama menolak. Dicatat agar
+    // terlihat di log, bukan diam-diam.
+    if (message.model !== "claude-fable-5") {
+      console.warn(`generate-article: dilayani model pengganti ${message.model}`);
     }
 
     const text = message.content.find((b) => b.type === "text");
