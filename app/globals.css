@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ink font-sans;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .container-brand {
+    @apply mx-auto w-full max-w-container px-6;
+  }
+
+  /*
+    Ritme vertikal seragam, lebih lapang dari sebelumnya (py-16/py-20).
+    80px lalu 112px, kelipatan grid 8px — arah "banyak ruang kosong" theFront.
+  */
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  /*
+    Kartu bersih terangkat: sudut lebih membulat, border tipis, bayangan
+    bernuansa hangat, dan angkat halus saat hover. Definisi ditopang bayangan
+    dan ruang kosong, bukan garis tebal — inti tampilan minimalis theFront.
+    Warna tidak disentuh, jadi kontras WCAG tidak berubah.
+  */
+  .card {
+    @apply rounded-brand-lg border border-ink/5 bg-white shadow-card transition duration-200;
+  }
+  .card-hover {
+    @apply hover:-translate-y-0.5 hover:shadow-card-hover;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-extrabold leading-tight text-ink md:text-4xl;
+  }
+  .section-label {
+    @apply mb-2 inline-block text-xs font-bold uppercase tracking-[0.12em] text-brand-rust;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-brand px-6 py-3 text-sm font-bold transition;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-rust focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+  /* Teks ink di atas oranye memberi 6.30:1; teks putih hanya 2.76:1. */
+  .btn-primary {
+    @apply bg-brand-orange text-ink shadow-brand hover:shadow-brand-hover hover:brightness-105;
+  }
+  .btn-secondary {
+    @apply border border-ink/15 bg-white text-ink hover:border-brand-orange hover:text-brand-rust;
+  }
+
+  /* Tautan teks di dalam prosa dan navigasi. */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-brand-rust focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+
+  /* Tampil hanya saat menerima fokus keyboard. */
+  .skip-link {
+    @apply sr-only;
+    @apply focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-brand focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white;
+  }
+}
