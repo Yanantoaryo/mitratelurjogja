@@ -22,12 +22,12 @@ export default function OpeningHours({
   const closedDays = Object.keys(DAY_LABELS).filter((d) => !listedDays.has(d));
 
   return (
-    <section id="jam-operasional" className="py-16 md:py-20">
+    <section id="jam-operasional" className="section">
       <Container>
         <p className="section-label">Jam Operasional</p>
         <h2 className="section-title">Kapan Kami Melayani</h2>
 
-        <div className="mt-8 max-w-2xl overflow-hidden rounded-brand border border-ink/10 bg-white">
+        <div className="card mt-8 max-w-2xl overflow-hidden">
           <div className="flex flex-wrap items-center gap-3 border-b border-ink/10 px-6 py-4">
             <Clock size={18} aria-hidden className="text-brand-rust" />
             <span

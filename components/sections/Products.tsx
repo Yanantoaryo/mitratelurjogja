@@ -5,7 +5,7 @@ import type { Product } from "@/sanity/lib/types";
 
 export default function Products({ items }: { items: Product[] }) {
   return (
-    <section id="produk" className="bg-cream-2 py-16 md:py-20">
+    <section id="produk" className="section bg-cream-2">
       <Container>
         <p className="section-label">Produk Kami</p>
         <h2 className="section-title">Pilihan Telur Berkualitas Tinggi</h2>

@@ -25,7 +25,7 @@ export default function Stats({ settings }: { settings: SiteSettings | null }) {
   const items = stats.length > 0 ? stats : FALLBACK_STATS;
 
   return (
-    <section id="mitra" className="py-16 md:py-20">
+    <section id="mitra" className="section">
       <Container>
         <p className="section-label">Dipercaya Ratusan Mitra</p>
         <h2 className="section-title max-w-2xl">
@@ -40,7 +40,7 @@ export default function Stats({ settings }: { settings: SiteSettings | null }) {
           {items.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-brand bg-white p-6 text-center shadow-brand"
+              className="card p-6 text-center"
             >
               <dt className="sr-only">{stat.label}</dt>
               <dd>

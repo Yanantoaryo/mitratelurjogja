@@ -25,7 +25,7 @@ export default async function ProductsPage() {
   const products = await sanityFetch<Product[]>(productsQuery);
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="section">
       <Container>
         <p className="section-label">Produk Kami</p>
         <h1 className="section-title">Pilihan Telur Berkualitas Tinggi</h1>

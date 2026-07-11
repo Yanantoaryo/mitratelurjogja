@@ -57,7 +57,7 @@ export default async function BlogPage({
     }`;
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="section">
       <Container>
         <p className="section-label">Blog</p>
         <h1 className="section-title">Wawasan Seputar Telur</h1>

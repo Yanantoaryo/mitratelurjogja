@@ -74,7 +74,7 @@ export default async function ProductDetailPage({
   const hasPrice = typeof price === "number";
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="section">
       <JsonLd data={productSchema(product)} />
       <JsonLd
         data={breadcrumbSchema([

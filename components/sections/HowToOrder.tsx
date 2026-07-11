@@ -27,7 +27,7 @@ const STEPS = [
 
 export default function HowToOrder() {
   return (
-    <section id="cara-order" className="bg-cream-2 py-16 md:py-20">
+    <section id="cara-order" className="section bg-cream-2">
       <Container>
         <p className="section-label">Cara Pemesanan</p>
         <h2 className="section-title">Pesan Mudah, Cepat, Langsung Dikirim</h2>
@@ -39,7 +39,7 @@ export default function HowToOrder() {
           {STEPS.map((step, i) => (
             <li
               key={step.title}
-              className="rounded-brand border border-ink/10 bg-white p-6"
+              className="card p-6"
             >
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-orange font-display text-lg font-extrabold text-ink">
                 {i + 1}

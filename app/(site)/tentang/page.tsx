@@ -34,7 +34,7 @@ export default async function TentangPage() {
 
   return (
     <>
-      <section className="py-16 md:py-20">
+      <section className="section">
         <Container className="max-w-3xl">
           <p className="section-label">Tentang Kami</p>
           <h1 className="section-title">
@@ -74,7 +74,7 @@ export default async function TentangPage() {
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-brand bg-white p-6 text-center shadow-brand"
+                  className="card p-6 text-center"
                 >
                   <dt className="sr-only">{stat.label}</dt>
                   <dd>
@@ -93,14 +93,14 @@ export default async function TentangPage() {
       </section>
 
       {advantages.length > 0 && (
-        <section className="bg-cream-2 py-16 md:py-20">
+        <section className="section bg-cream-2">
           <Container>
             <h2 className="section-title">Yang Kami Janjikan</h2>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {advantages.map((item) => (
                 <article
                   key={item._id}
-                  className="rounded-brand border border-ink/10 bg-white p-6"
+                  className="card p-6"
                 >
                   <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-orange/10 text-brand-rust">
                     <Icon name={item.icon} />
@@ -118,7 +118,7 @@ export default async function TentangPage() {
         </section>
       )}
 
-      <section className="py-16 md:py-20">
+      <section className="section">
         <Container className="text-center">
           <h2 className="section-title">Mau mulai memesan?</h2>
           <p className="mt-3 text-ink-mid">

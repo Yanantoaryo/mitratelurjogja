@@ -7,7 +7,7 @@ export default function Faq({ items }: { items: FaqType[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section id="faq" className="py-16 md:py-20">
+    <section id="faq" className="section">
       <Container>
         <p className="section-label">FAQ</p>
         <h2 className="section-title">Pertanyaan yang Sering Ditanyakan</h2>
@@ -23,7 +23,7 @@ export default function Faq({ items }: { items: FaqType[] }) {
           </a>
         </p>
 
-        <div className="mt-10 max-w-3xl divide-y divide-ink/10 rounded-brand border border-ink/10 bg-white">
+        <div className="card mt-10 max-w-3xl divide-y divide-ink/10">
           {items.map((item) => (
             <details key={item._id} className="group px-6 py-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink marker:content-none">

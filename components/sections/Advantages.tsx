@@ -6,7 +6,7 @@ export default function Advantages({ items }: { items: Advantage[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section id="keunggulan" className="py-16 md:py-20">
+    <section id="keunggulan" className="section">
       <Container>
         <p className="section-label">Keunggulan Kami</p>
         <h2 className="section-title">Mengapa Memilih Mitra Telur Jogja?</h2>
@@ -19,7 +19,7 @@ export default function Advantages({ items }: { items: Advantage[] }) {
           {items.map((item) => (
             <article
               key={item._id}
-              className="rounded-brand border border-ink/10 bg-white p-6 transition hover:shadow-brand"
+              className="card card-hover p-6"
             >
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-orange/10 text-brand-rust">
                 <Icon name={item.icon} />

@@ -11,7 +11,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const soldOut = availability === "OutOfStock";
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-brand border border-ink/10 bg-white transition hover:shadow-brand">
+    <article className="card card-hover flex flex-col overflow-hidden">
       <div className="relative aspect-[4/3] bg-cream-2">
         {image ? (
           <Image

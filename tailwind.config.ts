@@ -45,10 +45,20 @@ const config: Config = {
       },
       borderRadius: {
         brand: "12px",
+        /** Permukaan besar (kartu). Lebih membulat = lebih ramah, arah theFront. */
+        "brand-lg": "16px",
       },
       boxShadow: {
         brand: "0 4px 20px rgba(244,121,32,0.12)",
         "brand-hover": "0 8px 32px rgba(244,121,32,0.22)",
+        /**
+         * Bayangan kartu berlapis dan bernuansa hangat (chromatic), bukan hitam
+         * pekat — pilihan brand yang selaras dengan theFront. Halus saat diam,
+         * agar tampilan tetap bersih dan mengandalkan ruang kosong.
+         */
+        card: "0 1px 2px rgba(26,26,26,0.04), 0 12px 28px -10px rgba(244,121,32,0.12)",
+        "card-hover":
+          "0 2px 4px rgba(26,26,26,0.05), 0 20px 40px -12px rgba(244,121,32,0.20)",
       },
       maxWidth: {
         container: "1160px",

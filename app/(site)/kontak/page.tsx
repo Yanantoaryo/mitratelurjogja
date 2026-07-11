@@ -58,7 +58,7 @@ export default async function KontakPage() {
   )}&hl=id&z=16&output=embed`;
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="section">
       <JsonLd data={localBusinessSchema(settings)} />
       <Container>
         <p className="section-label">Kontak</p>

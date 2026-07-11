@@ -16,6 +16,28 @@
   .container-brand {
     @apply mx-auto w-full max-w-container px-6;
   }
+
+  /*
+    Ritme vertikal seragam, lebih lapang dari sebelumnya (py-16/py-20).
+    80px lalu 112px, kelipatan grid 8px — arah "banyak ruang kosong" theFront.
+  */
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  /*
+    Kartu bersih terangkat: sudut lebih membulat, border tipis, bayangan
+    bernuansa hangat, dan angkat halus saat hover. Definisi ditopang bayangan
+    dan ruang kosong, bukan garis tebal — inti tampilan minimalis theFront.
+    Warna tidak disentuh, jadi kontras WCAG tidak berubah.
+  */
+  .card {
+    @apply rounded-brand-lg border border-ink/5 bg-white shadow-card transition duration-200;
+  }
+  .card-hover {
+    @apply hover:-translate-y-0.5 hover:shadow-card-hover;
+  }
+
   .section-title {
     @apply font-display text-3xl font-extrabold leading-tight text-ink md:text-4xl;
   }

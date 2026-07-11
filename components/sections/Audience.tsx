@@ -21,7 +21,7 @@ const SEGMENTS = [
 
 export default function Audience() {
   return (
-    <section id="pelanggan" className="py-16 md:py-20">
+    <section id="pelanggan" className="section">
       <Container>
         <p className="section-label">Siapa yang Kami Layani</p>
         <h2 className="section-title">Untuk Bisnis &amp; Konsumen Langsung</h2>
@@ -34,7 +34,7 @@ export default function Audience() {
           {SEGMENTS.map((segment) => (
             <article
               key={segment.kicker}
-              className="rounded-brand border border-ink/10 bg-white p-7"
+              className="card p-7"
             >
               <span aria-hidden className="text-3xl">
                 {segment.emoji}

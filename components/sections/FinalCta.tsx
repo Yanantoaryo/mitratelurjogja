@@ -9,7 +9,7 @@ const WA_BUTTONS = [
 
 export default function FinalCta() {
   return (
-    <section id="pesan" className="bg-cream-2 py-16 md:py-20">
+    <section id="pesan" className="section bg-cream-2">
       <Container className="text-center">
         <h2 className="section-title">Siap Pesan Telur Segar Hari Ini?</h2>
         <p className="mt-3 text-ink-mid">

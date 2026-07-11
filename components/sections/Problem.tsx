@@ -25,7 +25,7 @@ const PAINS = [
 
 export default function Problem() {
   return (
-    <section className="bg-cream-2 py-16 md:py-20">
+    <section className="section bg-cream-2">
       <Container>
         <h2 className="section-title max-w-2xl">
           Kesulitan Mencari Supplier Telur yang Bisa Diandalkan?
@@ -39,7 +39,7 @@ export default function Problem() {
           {PAINS.map((pain) => (
             <li
               key={pain.title}
-              className="rounded-brand border border-ink/10 bg-white px-5 py-5"
+              className="card px-5 py-5"
             >
               <p className="flex items-center gap-2 font-bold text-ink">
                 <span aria-hidden className="text-brand-red">
@@ -52,7 +52,7 @@ export default function Problem() {
           ))}
         </ul>
 
-        <div className="mt-10 rounded-brand bg-white px-6 py-6 shadow-brand">
+        <div className="card mt-10 px-6 py-6">
           <p className="font-display text-xl font-extrabold text-brand-rust">
             Kami hadir sebagai solusi.
           </p>

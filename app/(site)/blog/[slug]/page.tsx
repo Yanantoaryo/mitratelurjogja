@@ -80,7 +80,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
   const hero = coverUrl(article, 1400, 700);
 
   return (
-    <article className="py-16 md:py-20">
+    <article className="section">
       <JsonLd
         data={blogPostingSchema(article, { coverUrl: coverUrl(article, 1200, 630) })}
       />

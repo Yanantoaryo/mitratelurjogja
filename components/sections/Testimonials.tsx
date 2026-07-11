@@ -30,7 +30,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section id="testimoni" className="bg-cream-2 py-16 md:py-20">
+    <section id="testimoni" className="section bg-cream-2">
       <Container>
         <p className="section-label">Testimoni Pelanggan</p>
         <h2 className="section-title">Kata Mereka tentang Mitra Telur Jogja</h2>
@@ -43,7 +43,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
           {items.map((item) => (
             <figure
               key={item._id}
-              className="flex flex-col rounded-brand border border-ink/10 bg-white p-6"
+              className="card flex flex-col p-6"
             >
               {typeof item.rating === "number" && <Rating value={item.rating} />}
               <blockquote className="mt-4 flex-1 text-sm text-ink-mid">

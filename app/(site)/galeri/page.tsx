@@ -27,7 +27,7 @@ export default async function GaleriPage() {
   const images = await sanityFetch<GalleryImage[]>(galleryImagesQuery);
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="section">
       {images.length > 0 && <JsonLd data={imageGallerySchema(images)} />}
       <Container>
         <p className="section-label">Galeri</p>
