@@ -25,7 +25,7 @@ const NAV_LINKS: NavItem[] = [
     ],
   },
   { href: "/#layanan", label: "Layanan" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog", label: "Artikel" },
   {
     href: "/tentang",
     label: "Tentang",
