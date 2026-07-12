@@ -19,6 +19,23 @@ const nextConfig = {
    */
   staticPageGenerationTimeout: 180,
 
+  /**
+   * www.mitratelurjogja.com -> mitratelurjogja.com (308 permanen).
+   * Canonical semua halaman menunjuk apex; redirect ini mencegah www
+   * melayani konten duplikat. Kondisi host=www tidak cocok saat diakses
+   * lewat apex, jadi tidak ada loop.
+   */
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.mitratelurjogja.com" }],
+        destination: "https://mitratelurjogja.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   // File statis lama disimpan di /legacy dan tidak ikut di-build.
 };
 
