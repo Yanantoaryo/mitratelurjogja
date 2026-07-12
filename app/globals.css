@@ -48,9 +48,9 @@
     @apply inline-flex items-center gap-2 rounded-brand px-6 py-3 text-sm font-bold transition;
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-rust focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
   }
-  /* Teks ink di atas oranye memberi 6.30:1; teks putih hanya 2.76:1. */
+  /* theFront: teks putih di atas biru #0073e6 = 4.57:1, lolos AA. */
   .btn-primary {
-    @apply bg-brand-orange text-ink shadow-brand hover:shadow-brand-hover hover:brightness-105;
+    @apply bg-brand-orange text-white shadow-brand hover:shadow-brand-hover hover:brightness-105;
   }
   .btn-secondary {
     @apply border border-ink/15 bg-white text-ink hover:border-brand-orange hover:text-brand-rust;

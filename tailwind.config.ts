@@ -9,39 +9,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Design tokens diekstrak dari legacy/index.html (:root)
+        /*
+          Palet theFront (design.md). Nama token dipertahankan (brand-orange dst.)
+          agar komponen tidak perlu diubah, tapi nilainya diremap ke biru theFront.
+          Semua kombinasi terverifikasi lolos WCAG AA. #0073e6 di atas putih =
+          4.57:1 (teks & tombol teks-putih). Teks/link memakai #006dd9 (5.01 di
+          atas putih, 4.53 di atas permukaan biru-muda).
+        */
         brand: {
           red: "#E8192C",
-          /** Bidang, border, dan latar. Jangan dipakai sebagai warna teks. */
-          orange: "#F47920",
-          yellow: "#FFC107",
-          /**
-           * Varian gelap untuk teks, tautan, dan cincin fokus. #F47920 hanya
-           * mencapai 2.76:1 di atas putih; WCAG AA menuntut 4.5:1 untuk teks
-           * dan 3:1 untuk indikator fokus. Nilai ini lolos 4.5:1 di atas
-           * putih, cream, cream-2, dan tint bg-brand-orange/10.
-           */
-          rust: "#AF5617",
-          /** Bintang rating. #FFC107 hanya 1.63:1, di bawah ambang 3:1 grafis. */
-          gold: "#B8860B",
+          /** Aksen theFront: bidang, border, tombol. */
+          orange: "#0073e6",
+          yellow: "#0073e6",
+          /** Teks/link/cincin fokus — biru sedikit lebih gelap agar lolos di
+              atas putih maupun permukaan biru-muda. */
+          rust: "#006dd9",
+          /** Bintang rating. */
+          gold: "#0073e6",
         },
         cream: {
-          DEFAULT: "#FFFDF5",
-          2: "#FFF4DF",
+          /** Kanvas utama theFront: putih. */
+          DEFAULT: "#FFFFFF",
+          /** Section berselang: biru sangat muda untuk ritme. */
+          2: "#EEF4FB",
         },
         ink: {
-          DEFAULT: "#1A1A1A",
-          mid: "#555555",
-          /**
-           * Digelapkan dari #888888 (3.48:1). Nilai ini lolos 4.5:1 di atas
-           * putih, cream, maupun cream-2 — yang terakhir adalah latar tersulit.
-           */
-          muted: "#707070",
+          /** Teks utama theFront. */
+          DEFAULT: "#1A1E23",
+          /** Sekunder, 5.74:1 di atas putih. */
+          mid: "#666666",
+          /** 4.5:1+ di atas putih dan permukaan biru-muda. */
+          muted: "#5F6B76",
         },
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "serif"],
-        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        display: ["var(--font-ibm-plex)", "system-ui", "sans-serif"],
+        sans: ["var(--font-ibm-plex)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         brand: "12px",
@@ -49,16 +52,12 @@ const config: Config = {
         "brand-lg": "16px",
       },
       boxShadow: {
-        brand: "0 4px 20px rgba(244,121,32,0.12)",
-        "brand-hover": "0 8px 32px rgba(244,121,32,0.22)",
-        /**
-         * Bayangan kartu berlapis dan bernuansa hangat (chromatic), bukan hitam
-         * pekat — pilihan brand yang selaras dengan theFront. Halus saat diam,
-         * agar tampilan tetap bersih dan mengandalkan ruang kosong.
-         */
-        card: "0 1px 2px rgba(26,26,26,0.04), 0 12px 28px -10px rgba(244,121,32,0.12)",
+        /* Bayangan bernuansa biru aksen theFront. */
+        brand: "0 4px 20px rgba(0,115,230,0.12)",
+        "brand-hover": "0 8px 32px rgba(0,115,230,0.22)",
+        card: "0 1px 2px rgba(26,30,35,0.04), 0 12px 28px -10px rgba(0,115,230,0.12)",
         "card-hover":
-          "0 2px 4px rgba(26,26,26,0.05), 0 20px 40px -12px rgba(244,121,32,0.20)",
+          "0 2px 4px rgba(26,30,35,0.05), 0 20px 40px -12px rgba(0,115,230,0.20)",
       },
       maxWidth: {
         container: "1160px",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { fraunces, jakarta } from "@/lib/fonts";
+import { ibmPlex } from "@/lib/fonts";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://mitratelurjogja.com";
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${fraunces.variable} ${jakarta.variable}`}>
+    <html lang="id" className={ibmPlex.variable}>
       <body>{children}</body>
     </html>
   );

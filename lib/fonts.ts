@@ -1,15 +1,11 @@
-import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 
-export const fraunces = Fraunces({
+/**
+ * Desain theFront (design.md): IBM Plex Sans untuk judul dan teks.
+ */
+export const ibmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-export const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-jakarta",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-plex",
   display: "swap",
 });
