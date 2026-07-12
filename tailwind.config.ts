@@ -10,54 +10,57 @@ const config: Config = {
     extend: {
       colors: {
         /*
-          Palet theFront (design.md). Nama token dipertahankan (brand-orange dst.)
-          agar komponen tidak perlu diubah, tapi nilainya diremap ke biru theFront.
-          Semua kombinasi terverifikasi lolos WCAG AA. #0073e6 di atas putih =
-          4.57:1 (teks & tombol teks-putih). Teks/link memakai #006dd9 (5.01 di
-          atas putih, 4.53 di atas permukaan biru-muda).
+          Palet AgriHub (Design/DESIGN-bestwpware-com.md) dengan hijau diganti
+          oranye simpel, sesuai permintaan. Nama token dipertahankan agar
+          komponen tidak perlu diubah. Semua kombinasi terverifikasi WCAG AA:
+          #B95510 lolos 4.81:1 di atas putih (teks, link, tombol teks-putih).
         */
         brand: {
           red: "#E8192C",
-          /** Aksen theFront: bidang, border, tombol. */
-          orange: "#0073e6",
-          yellow: "#0073e6",
-          /** Teks/link/cincin fokus — biru sedikit lebih gelap agar lolos di
-              atas putih maupun permukaan biru-muda. */
-          rust: "#006dd9",
-          /** Bintang rating. */
-          gold: "#0073e6",
+          /** Aksen utama: teks, link, tombol, ikon, border aktif. */
+          orange: "#B95510",
+          /** Oranye terang untuk bidang dekoratif besar (bukan teks kecil). */
+          "orange-bright": "#F97316",
+          yellow: "#B95510",
+          /** Sama dengan aksen; nama lama dipertahankan untuk kompatibilitas. */
+          rust: "#B95510",
+          gold: "#B95510",
         },
         cream: {
-          /** Kanvas utama theFront: putih. */
+          /** Kanvas utama AgriHub: putih. */
           DEFAULT: "#FFFFFF",
-          /** Section berselang: biru sangat muda untuk ritme. */
-          2: "#EEF4FB",
+          /** Section berselang: krem oranye sangat muda. */
+          2: "#FFF7ED",
         },
         ink: {
-          /** Teks utama theFront. */
-          DEFAULT: "#1A1E23",
-          /** Sekunder, 5.74:1 di atas putih. */
-          mid: "#666666",
-          /** 4.5:1+ di atas putih dan permukaan biru-muda. */
-          muted: "#5F6B76",
+          /** Teks utama, hangat (bukan hitam pekat), 17.49:1 di atas putih. */
+          DEFAULT: "#1C1917",
+          /** Sekunder, 4.80:1 di atas putih. */
+          mid: "#78716C",
+          muted: "#78716C",
+        },
+        /** Permukaan gelap hangat: footer dan section CTA. */
+        surface: {
+          dark: "#1C1917",
         },
       },
       fontFamily: {
-        display: ["var(--font-ibm-plex)", "system-ui", "sans-serif"],
-        sans: ["var(--font-ibm-plex)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       borderRadius: {
-        brand: "12px",
-        /** Permukaan besar (kartu). Lebih membulat = lebih ramah, arah theFront. */
-        "brand-lg": "16px",
+        /* AgriHub: sudut besar & pill. */
+        brand: "16px",
+        "brand-lg": "24px",
+        pill: "100px",
       },
       boxShadow: {
-        /* Bayangan bernuansa biru aksen theFront. */
-        brand: "0 4px 20px rgba(0,115,230,0.12)",
-        "brand-hover": "0 8px 32px rgba(0,115,230,0.22)",
-        card: "0 1px 2px rgba(26,30,35,0.04), 0 12px 28px -10px rgba(0,115,230,0.12)",
+        /* Bayangan bernuansa oranye hangat (chromatic), khas AgriHub. */
+        brand: "0 10px 30px rgba(185,85,16,0.10)",
+        "brand-hover": "0 16px 40px rgba(185,85,16,0.18)",
+        card: "0 2px 4px rgba(28,25,23,0.04), 0 18px 40px -12px rgba(185,85,16,0.12)",
         "card-hover":
-          "0 2px 4px rgba(26,30,35,0.05), 0 20px 40px -12px rgba(0,115,230,0.20)",
+          "0 4px 8px rgba(28,25,23,0.06), 0 28px 56px -14px rgba(185,85,16,0.22)",
       },
       maxWidth: {
         container: "1160px",

@@ -1,11 +1,19 @@
-import { IBM_Plex_Sans } from "next/font/google";
+import { Noto_Serif, Montserrat } from "next/font/google";
 
 /**
- * Desain theFront (design.md): IBM Plex Sans untuk judul dan teks.
+ * Desain AgriHub (Design/DESIGN-bestwpware-com.md): Noto Serif untuk judul
+ * (besar & tebal, tipografi sebagai elemen utama), Montserrat untuk teks.
  */
-export const ibmPlex = IBM_Plex_Sans({
+export const notoSerif = Noto_Serif({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+export const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-ibm-plex",
+  variable: "--font-sans",
   display: "swap",
 });

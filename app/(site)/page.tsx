@@ -8,6 +8,7 @@ import HowToOrder from "@/components/sections/HowToOrder";
 import OpeningHours from "@/components/sections/OpeningHours";
 import Problem from "@/components/sections/Problem";
 import Products from "@/components/sections/Products";
+import Services from "@/components/sections/Services";
 import Stats from "@/components/sections/Stats";
 import Testimonials from "@/components/sections/Testimonials";
 import {
@@ -50,6 +51,7 @@ export default async function HomePage() {
       <Hero />
       <Problem />
       <Advantages items={advantages} />
+      <Services />
       <Products items={products} />
       <Audience />
       <HowToOrder />

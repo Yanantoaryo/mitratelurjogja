@@ -17,43 +17,44 @@
     @apply mx-auto w-full max-w-container px-6;
   }
 
-  /*
-    Ritme vertikal seragam, lebih lapang dari sebelumnya (py-16/py-20).
-    80px lalu 112px, kelipatan grid 8px — arah "banyak ruang kosong" theFront.
-  */
+  /* AgriHub: ritme vertikal lapang (basis 18px). ~90px lalu ~126px. */
   .section {
-    @apply py-20 md:py-28;
+    @apply py-[4.5rem] md:py-[7rem];
   }
 
   /*
-    Kartu bersih terangkat: sudut lebih membulat, border tipis, bayangan
-    bernuansa hangat, dan angkat halus saat hover. Definisi ditopang bayangan
-    dan ruang kosong, bukan garis tebal — inti tampilan minimalis theFront.
-    Warna tidak disentuh, jadi kontras WCAG tidak berubah.
+    Kartu AgriHub: sudut besar (24px), border tipis, bayangan bernuansa oranye
+    hangat, angkat halus saat hover.
   */
   .card {
     @apply rounded-brand-lg border border-ink/5 bg-white shadow-card transition duration-200;
   }
   .card-hover {
-    @apply hover:-translate-y-0.5 hover:shadow-card-hover;
+    @apply hover:-translate-y-1 hover:shadow-card-hover;
   }
 
+  /*
+    Judul AgriHub: serif besar dan tebal, letter-spacing rapat — tipografi jadi
+    elemen hero. leading rapat agar terasa padat dan berkarakter.
+  */
   .section-title {
-    @apply font-display text-3xl font-extrabold leading-tight text-ink md:text-4xl;
+    @apply font-display text-[2rem] font-bold leading-[1.1] tracking-[-0.02em] text-ink md:text-5xl;
   }
   .section-label {
-    @apply mb-2 inline-block text-xs font-bold uppercase tracking-[0.12em] text-brand-rust;
+    @apply mb-3 inline-block rounded-pill bg-brand-orange/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-brand-orange;
   }
+
+  /* Tombol pill AgriHub. */
   .btn {
-    @apply inline-flex items-center gap-2 rounded-brand px-6 py-3 text-sm font-bold transition;
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-rust focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+    @apply inline-flex items-center gap-2 rounded-pill px-7 py-3.5 text-sm font-semibold transition;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 focus-visible:ring-offset-white;
   }
-  /* theFront: teks putih di atas biru #0073e6 = 4.57:1, lolos AA. */
+  /* Teks putih di atas oranye #B95510 = 4.81:1, lolos AA. */
   .btn-primary {
-    @apply bg-brand-orange text-white shadow-brand hover:shadow-brand-hover hover:brightness-105;
+    @apply bg-brand-orange text-white shadow-brand hover:shadow-brand-hover hover:brightness-110;
   }
   .btn-secondary {
-    @apply border border-ink/15 bg-white text-ink hover:border-brand-orange hover:text-brand-rust;
+    @apply border border-ink/15 bg-white text-ink hover:border-brand-orange hover:text-brand-orange;
   }
 
   /* Tautan teks di dalam prosa dan navigasi. */

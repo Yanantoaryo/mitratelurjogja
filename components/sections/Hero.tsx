@@ -19,15 +19,15 @@ const BADGES = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
+    <section className="relative overflow-hidden bg-cream-2 py-20 md:py-28">
       <Container>
-        <p className="section-label">Potorono, Bantul, Yogyakarta</p>
-        <h1 className="font-display text-4xl font-extrabold leading-[1.1] text-ink md:text-6xl">
+        <span className="section-label">Potorono, Bantul, Yogyakarta</span>
+        <h1 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-7xl">
           Supplier Telur{" "}
-          <em className="not-italic text-brand-rust">Segar &amp; Terpercaya</em>{" "}
+          <em className="not-italic text-brand-orange">Segar &amp; Terpercaya</em>{" "}
           di Yogyakarta
         </h1>
-        <p className="mt-5 max-w-xl text-lg text-ink-mid">
+        <p className="mt-6 max-w-xl text-lg text-ink-mid">
           Mitra Telur Jogja menyediakan telur ayam komersial dan telur omega
           berkualitas tinggi untuk seluruh wilayah DIY. Gratis ongkir, fresh
           dari farm, langsung diantar ke lokasi Anda.
