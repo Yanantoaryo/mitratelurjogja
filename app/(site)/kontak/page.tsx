@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
 import { formatDays } from "@/lib/hours";
 import { localBusinessSchema } from "@/lib/jsonld";
-import { ADDRESS, SITE_URL } from "@/lib/site";
+import { ADDRESS, BUSINESS_NAME, SITE_URL } from "@/lib/site";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { siteSettingsQuery } from "@/sanity/lib/queries";
 import type { SiteSettings } from "@/sanity/lib/types";
@@ -48,11 +48,15 @@ export default async function KontakPage() {
     (h) => h.days?.length && h.opens && h.closes
   );
 
-  // Embed tanpa API key. Pakai koordinat bila ada, kalau tidak jatuh ke alamat.
+  // Tautan resmi ke listing Google Bisnis Mitra Telur Jogja (pakai CID tempat).
+  const mapsPlaceUrl = "https://www.google.com/maps?cid=962332873621504444";
+
+  // Embed tanpa API key. Utamakan koordinat dari CMS bila ada, kalau tidak
+  // cari berdasarkan nama bisnis supaya pin jatuh di listing Mitra Telur Jogja.
   const mapQuery =
     typeof geo?.lat === "number" && typeof geo?.lng === "number"
       ? `${geo.lat},${geo.lng}`
-      : address;
+      : `${BUSINESS_NAME}, ${address}`;
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     mapQuery
   )}&hl=id&z=16&output=embed`;
@@ -156,6 +160,15 @@ export default async function KontakPage() {
                 className="block border-0"
               />
             </div>
+            <a
+              href={mapsPlaceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand-rust hover:underline"
+            >
+              <MapPin size={16} aria-hidden />
+              Lihat di Google Maps
+            </a>
           </div>
         </div>
       </Container>
