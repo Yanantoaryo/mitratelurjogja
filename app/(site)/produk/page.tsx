@@ -29,7 +29,7 @@ export default async function ProductsPage() {
       <Container>
         <p className="section-label">Produk Kami</p>
         <h1 className="section-title">Pilihan Telur Berkualitas Tinggi</h1>
-        <p className="mt-3 max-w-xl text-ink-mid">
+        <p className="mt-4 max-w-xl text-ink-mid">
           Harga lebih murah mulai 1 peti (15 kg). Penawaran spesial untuk B2B.
         </p>
 
@@ -38,7 +38,7 @@ export default async function ProductsPage() {
             Produk belum tersedia. Tambahkan lewat Studio.
           </p>
         ) : (
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}

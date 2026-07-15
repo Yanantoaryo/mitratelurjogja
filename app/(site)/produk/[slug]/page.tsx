@@ -86,13 +86,13 @@ export default async function ProductDetailPage({
       <Container>
         <Link
           href="/produk"
-          className="inline-flex items-center gap-2 text-sm font-medium text-ink-mid transition hover:text-brand-rust"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-ink-mid transition hover:text-ink"
         >
           <ArrowLeft size={16} aria-hidden /> Semua produk
         </Link>
 
-        <div className="mt-8 grid gap-10 md:grid-cols-2">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-brand bg-cream-2">
+        <div className="mt-8 grid items-start gap-10 md:grid-cols-2 lg:gap-14">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-card border border-ink/10 bg-cream-2">
             {image ? (
               <Image
                 src={urlFor(image).width(1000).height(750).fit("crop").url()}
@@ -110,23 +110,23 @@ export default async function ProductDetailPage({
           </div>
 
           <div>
-            <h1 className="font-display text-3xl font-extrabold text-ink md:text-4xl">
+            <h1 className="font-display text-3xl font-black leading-[1.1] tracking-[-0.02em] text-ink md:text-4xl">
               {name}
             </h1>
 
             {availability && (
-              <p className="mt-3 inline-block rounded-brand bg-cream-2 px-3 py-1 text-xs font-bold text-ink-mid">
+              <p className="mt-4 inline-block rounded-pill border border-ink/10 bg-cream-2 px-3 py-1.5 text-xs font-bold text-ink-mid">
                 {AVAILABILITY_LABEL[availability] ?? availability}
               </p>
             )}
 
             {description && (
-              <p className="mt-5 text-ink-mid">{description}</p>
+              <p className="mt-5 leading-relaxed text-ink-mid">{description}</p>
             )}
 
             <div className="mt-8">
               {hasPrice ? (
-                <p className="font-display text-4xl font-extrabold text-brand-rust">
+                <p className="font-display text-4xl font-black tracking-tight text-ink">
                   {formatPrice(price)}
                   {unit && (
                     <span className="ml-2 text-base font-medium text-ink-muted">

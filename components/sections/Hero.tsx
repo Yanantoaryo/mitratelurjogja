@@ -40,7 +40,11 @@ export default function Hero() {
             Telur Segar dari Farm, Diantar ke Lokasi Anda
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg font-bold text-ink-mid">
-            Telur Ayam Komersial &amp; Telur Omega — Gratis Ongkir Seluruh DIY
+            Telur Ayam Komersial &amp; Telur Omega — Gratis Ongkir Seluruh DI
+            Yogyakarta
+          </p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold text-ink-muted">
+            Sleman, Bantul, Kota Yogyakarta, Kulon Progo, Gunungkidul
           </p>
           <div className="mt-8 flex justify-center">
             <a

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Instagram, MapPin, Phone } from "lucide-react";
 import Container from "@/components/Container";
 import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
@@ -67,10 +67,10 @@ export default async function KontakPage() {
       <Container>
         <p className="section-label">Kontak</p>
         <h1 className="section-title">Hubungi Kami</h1>
-        <p className="mt-3 max-w-xl text-ink-mid">{DESCRIPTION}</p>
+        <p className="mt-4 max-w-xl text-ink-mid">{DESCRIPTION}</p>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          <div>
+        <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+          <div className="rounded-card border border-ink/10 bg-white p-6 shadow-card md:p-8">
             <h2 className="font-display text-xl font-extrabold text-ink">
               Kirim pesan
             </h2>
@@ -84,27 +84,33 @@ export default async function KontakPage() {
               Informasi
             </h2>
 
-            <dl className="mt-6 space-y-5">
-              <div className="flex gap-3">
-                <MapPin size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-rust" />
+            <dl className="mt-6 space-y-6">
+              <div className="flex gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-brand bg-brand-yellow/15 text-ink">
+                  <MapPin size={18} aria-hidden />
+                </span>
                 <div>
                   <dt className="text-sm font-bold text-ink">Alamat</dt>
-                  <dd className="text-sm text-ink-mid">{address}</dd>
+                  <dd className="mt-1 text-sm leading-relaxed text-ink-mid">
+                    {address}
+                  </dd>
                 </div>
               </div>
 
-              <div className="flex gap-3">
-                <Phone size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-rust" />
+              <div className="flex gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-brand bg-brand-yellow/15 text-ink">
+                  <Phone size={18} aria-hidden />
+                </span>
                 <div>
                   <dt className="text-sm font-bold text-ink">WhatsApp</dt>
-                  <dd className="space-y-1 text-sm">
+                  <dd className="mt-1 space-y-1 text-sm">
                     {phones.map((p) => (
                       <a
                         key={p}
                         href={`https://wa.me/${p.replace(/\D/g, "")}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block text-ink-mid hover:text-brand-rust"
+                        className="block font-semibold text-ink-mid transition hover:text-ink"
                       >
                         {prettyPhone(p)}
                       </a>
@@ -114,11 +120,15 @@ export default async function KontakPage() {
               </div>
 
               {hours?.length ? (
-                <div className="flex gap-3">
-                  <Clock size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-rust" />
+                <div className="flex gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-brand bg-brand-yellow/15 text-ink">
+                    <Clock size={18} aria-hidden />
+                  </span>
                   <div>
-                    <dt className="text-sm font-bold text-ink">Jam Operasional</dt>
-                    <dd className="space-y-1 text-sm text-ink-mid">
+                    <dt className="text-sm font-bold text-ink">
+                      Jam Operasional
+                    </dt>
+                    <dd className="mt-1 space-y-1 text-sm text-ink-mid">
                       {hours.map((h, i) => (
                         <p key={i}>
                           {formatDays(h.days!)}: {h.opens} – {h.closes} WIB
@@ -130,16 +140,18 @@ export default async function KontakPage() {
               ) : null}
 
               {settings?.socials?.instagram && (
-                <div className="flex gap-3">
-                  <Mail size={18} aria-hidden className="mt-0.5 shrink-0 text-brand-rust" />
+                <div className="flex gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-brand bg-brand-yellow/15 text-ink">
+                    <Instagram size={18} aria-hidden />
+                  </span>
                   <div>
                     <dt className="text-sm font-bold text-ink">Media Sosial</dt>
-                    <dd className="text-sm">
+                    <dd className="mt-1 text-sm">
                       <a
                         href={settings.socials.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-ink-mid hover:text-brand-rust"
+                        className="font-semibold text-ink-mid transition hover:text-ink"
                       >
                         Instagram
                       </a>
@@ -149,7 +161,7 @@ export default async function KontakPage() {
               )}
             </dl>
 
-            <div className="mt-8 overflow-hidden rounded-brand border border-ink/10">
+            <div className="mt-8 overflow-hidden rounded-card border border-ink/10 shadow-card">
               <iframe
                 src={mapSrc}
                 title={`Peta lokasi ${address}`}
@@ -164,7 +176,7 @@ export default async function KontakPage() {
               href={mapsPlaceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand-rust hover:underline"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-ink underline decoration-brand-yellow decoration-2 underline-offset-4 transition hover:decoration-4"
             >
               <MapPin size={16} aria-hidden />
               Lihat di Google Maps

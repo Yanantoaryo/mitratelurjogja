@@ -38,7 +38,7 @@ export default function ContactForm() {
   }
 
   const fieldClass =
-    "mt-1.5 w-full rounded-brand border border-ink/15 bg-white px-4 py-2.5 text-sm text-ink outline-none placeholder:text-ink-muted focus:border-brand-orange";
+    "mt-1.5 w-full rounded-brand border border-ink/15 bg-white px-4 py-2.5 text-sm text-ink outline-none transition placeholder:text-ink-muted focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/30";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
