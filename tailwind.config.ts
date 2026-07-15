@@ -10,60 +10,67 @@ const config: Config = {
     extend: {
       colors: {
         /*
-          Palet AgriHub (Design/DESIGN-bestwpware-com.md) dengan hijau diganti
-          oranye simpel, sesuai permintaan. Nama token dipertahankan agar
-          komponen tidak perlu diubah. Semua kombinasi terverifikasi WCAG AA:
-          #B95510 lolos 4.81:1 di atas putih (teks, link, tombol teks-putih).
+          Palet BroilerX (DESIGN-broilerx-com.md). Kanvas putih, satu aksen
+          kuning #F5BE01 untuk CTA/highlight (selalu dengan teks gelap di
+          atasnya — kuning di atas putih tidak pernah dipakai untuk teks
+          kecil), teks slate gelap, permukaan gelap #12141D untuk footer dan
+          section aksen. Nama token lama dipertahankan agar halaman lain
+          tetap bekerja.
         */
         brand: {
-          red: "#E8192C",
-          /** Aksen utama: teks, link, tombol, ikon, border aktif. */
-          orange: "#B95510",
-          /** Oranye terang untuk bidang dekoratif besar (bukan teks kecil). */
-          "orange-bright": "#F97316",
-          yellow: "#B95510",
-          /** Sama dengan aksen; nama lama dipertahankan untuk kompatibilitas. */
-          rust: "#B95510",
-          gold: "#B95510",
+          /** Aksen utama: latar CTA, highlight, bintang rating. */
+          yellow: "#F5BE01",
+          /** Aksen sekunder: hover CTA kuning. */
+          "yellow-2": "#F7CB33",
+          red: "#DC2626",
+          /* Alias kompatibilitas (halaman lain masih memakai nama lama). */
+          orange: "#F5BE01",
+          "orange-bright": "#F7CB33",
+          /** Aksen teks/ikon: gelap, bukan kuning — kuning gagal kontras. */
+          rust: "#101828",
+          gold: "#F5BE01",
         },
         cream: {
-          /** Kanvas utama AgriHub: putih. */
+          /** Kanvas utama: putih. */
           DEFAULT: "#FFFFFF",
-          /** Section berselang: krem oranye sangat muda. */
-          2: "#FFF7ED",
+          /** Section berselang: slate sangat muda (dari --secondary situs). */
+          2: "#F8FAFC",
         },
         ink: {
-          /** Teks utama, hangat (bukan hitam pekat), 17.49:1 di atas putih. */
-          DEFAULT: "#1C1917",
-          /** Sekunder, 4.80:1 di atas putih. */
-          mid: "#78716C",
-          muted: "#78716C",
+          /** Judul & teks utama (#101828 dari palet), 17.4:1 di atas putih. */
+          DEFAULT: "#101828",
+          /** Teks sekunder (#475467), 7.3:1 di atas putih. */
+          mid: "#475467",
+          /** Caption / placeholder (#667085), 4.7:1 di atas putih. */
+          muted: "#667085",
         },
-        /** Permukaan gelap hangat: footer dan section CTA. */
+        /** Permukaan gelap: footer & section aksen (palet #12141D). */
         surface: {
-          dark: "#1C1917",
+          dark: "#12141D",
+          darker: "#0F172A",
         },
       },
       fontFamily: {
-        display: ["var(--font-display)", "Georgia", "serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       borderRadius: {
-        /* AgriHub: sudut besar & pill. */
-        brand: "16px",
-        "brand-lg": "24px",
-        pill: "100px",
+        /* BroilerX: tombol 6–8px, kartu 24px. */
+        brand: "8px",
+        "brand-lg": "16px",
+        card: "24px",
+        pill: "9999px",
       },
       boxShadow: {
-        /* Bayangan bernuansa oranye hangat (chromatic), khas AgriHub. */
-        brand: "0 10px 30px rgba(185,85,16,0.10)",
-        "brand-hover": "0 16px 40px rgba(185,85,16,0.18)",
-        card: "0 2px 4px rgba(28,25,23,0.04), 0 18px 40px -12px rgba(185,85,16,0.12)",
+        /* Bayangan netral halus, bukan berwarna. */
+        brand: "0 1px 2px rgba(16,24,40,0.05)",
+        "brand-hover": "0 4px 12px rgba(16,24,40,0.10)",
+        card: "0 1px 2px rgba(16,24,40,0.04), 0 1px 3px rgba(16,24,40,0.06)",
         "card-hover":
-          "0 4px 8px rgba(28,25,23,0.06), 0 28px 56px -14px rgba(185,85,16,0.22)",
+          "0 4px 6px -2px rgba(16,24,40,0.05), 0 12px 24px -4px rgba(16,24,40,0.10)",
       },
       maxWidth: {
-        container: "1160px",
+        container: "1200px",
       },
     },
   },

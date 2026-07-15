@@ -30,32 +30,35 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-ink/10 bg-cream-2">
-      <Container className="grid gap-8 py-12 md:grid-cols-3">
+    <footer className="bg-surface-dark text-white">
+      <Container className="grid gap-10 py-14 md:grid-cols-3">
         <div>
-          <p className="font-display text-lg font-extrabold text-ink">
+          <p className="font-display text-lg font-extrabold text-white">
             Mitra Telur Jogja
           </p>
-          <p className="mt-2 max-w-xs text-sm text-ink-mid">
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
             Supplier telur ayam komersial &amp; telur omega terpercaya di
             Yogyakarta.
           </p>
         </div>
 
-        <div className="space-y-2 text-sm text-ink-mid">
+        <div className="space-y-3 text-sm text-white/70">
           <p className="flex items-center gap-2">
-            <MapPin size={16} /> Potorono, Bantul, Yogyakarta
+            <MapPin size={16} aria-hidden className="text-brand-yellow" />{" "}
+            Potorono, Bantul, Yogyakarta
           </p>
           <p className="flex items-center gap-2">
-            <Phone size={16} /> +62 857-0227-5769
+            <Phone size={16} aria-hidden className="text-brand-yellow" /> +62
+            857-0227-5769
           </p>
           <p className="flex items-center gap-2">
-            <Phone size={16} /> +62 858-4814-8108
+            <Phone size={16} aria-hidden className="text-brand-yellow" /> +62
+            858-4814-8108
           </p>
         </div>
 
         <div>
-          <p className="mb-3 text-sm font-bold text-ink">Ikuti Kami</p>
+          <p className="mb-4 text-sm font-bold text-white">Ikuti Kami</p>
           <div className="flex gap-3">
             {SOCIALS.map(({ href, label, Icon }) => (
               <a
@@ -64,7 +67,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink-mid transition hover:border-brand-orange hover:text-brand-rust"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-brand-yellow hover:text-brand-yellow"
               >
                 <Icon size={18} aria-hidden />
               </a>
@@ -73,13 +76,13 @@ export default function Footer() {
         </div>
       </Container>
 
-      <div className="border-t border-ink/10 py-4 text-center text-xs text-ink-muted">
+      <div className="border-t border-white/10 py-5 text-center text-xs text-white/50">
         © {new Date().getFullYear()} Mitra Telur Jogja ·{" "}
-        <Link href="/tentang" className="hover:text-brand-rust">
+        <Link href="/tentang" className="transition hover:text-white">
           Tentang
         </Link>{" "}
         ·{" "}
-        <Link href="/kontak" className="hover:text-brand-rust">
+        <Link href="/kontak" className="transition hover:text-white">
           Kontak
         </Link>
       </div>

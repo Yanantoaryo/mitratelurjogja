@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, MessageCircle, ChevronDown } from "lucide-react";
-import Container from "./Container";
 import { WA_URL } from "@/lib/site";
 
 type NavItem = {
@@ -68,7 +67,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((v) => !v)}
-        className="focus-ring flex items-center gap-1 rounded-brand py-2 text-sm font-medium text-ink-mid transition hover:text-brand-orange"
+        className="focus-ring flex items-center gap-1 rounded-brand py-2 text-sm font-semibold text-ink-mid transition hover:text-ink"
       >
         {item.label}
         <ChevronDown
@@ -80,14 +79,14 @@ function DesktopDropdown({ item }: { item: NavItem }) {
       {open && (
         <ul
           role="menu"
-          className="absolute left-0 top-full z-50 min-w-44 overflow-hidden rounded-brand border border-ink/5 bg-white py-2 shadow-card"
+          className="absolute left-0 top-full z-50 min-w-44 overflow-hidden rounded-brand-lg border border-ink/10 bg-white py-2 shadow-card-hover"
         >
           {item.children!.map((c) => (
             <li key={c.href} role="none">
               <Link
                 role="menuitem"
                 href={c.href}
-                className="block px-4 py-2 text-sm font-medium text-ink-mid transition hover:bg-cream-2 hover:text-brand-orange"
+                className="block px-4 py-2 text-sm font-medium text-ink-mid transition hover:bg-cream-2 hover:text-ink"
               >
                 {c.label}
               </Link>
@@ -99,12 +98,18 @@ function DesktopDropdown({ item }: { item: NavItem }) {
   );
 }
 
+/**
+ * Navigasi mengambang (floating pill): bar putih membulat penuh yang
+ * terlepas dari tepi atas, melayang di atas konten — logo kiri, tautan
+ * tengah, CTA kuning kanan. Ruang di bawahnya disediakan oleh padding-top
+ * pada <main> di layout (site).
+ */
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/5 bg-white/90 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between">
+    <header className="fixed inset-x-0 top-3 z-50 px-3 md:top-5">
+      <div className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between gap-4 rounded-pill border border-ink/10 bg-white/95 pl-4 pr-2 shadow-card-hover backdrop-blur md:pl-6">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/logo-mtj.png"
@@ -112,16 +117,16 @@ export default function Navbar() {
             width={102}
             height={72}
             priority
-            sizes="51px"
-            className="h-9 w-auto"
+            sizes="41px"
+            className="h-8 w-auto"
           />
-          <span className="font-display text-lg font-bold text-ink">
+          <span className="font-display text-base font-extrabold tracking-tight text-ink">
             Mitra Telur Jogja
           </span>
         </Link>
 
         <nav aria-label="Menu utama" className="hidden md:block">
-          <ul className="flex items-center gap-7">
+          <ul className="flex items-center gap-6">
             {NAV_LINKS.map((l) =>
               l.children ? (
                 <DesktopDropdown key={l.href} item={l} />
@@ -129,7 +134,7 @@ export default function Navbar() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm font-medium text-ink-mid transition hover:text-brand-orange"
+                    className="text-sm font-semibold text-ink-mid transition hover:text-ink"
                   >
                     {l.label}
                   </Link>
@@ -143,14 +148,14 @@ export default function Navbar() {
           href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-primary hidden md:inline-flex"
+          className="btn btn-primary hidden h-10 rounded-pill px-5 py-0 md:inline-flex"
         >
-          <MessageCircle size={16} /> Pesan Sekarang
+          <MessageCircle size={15} /> Pesan Sekarang
         </a>
 
         <button
           type="button"
-          className="focus-ring rounded-brand p-1 md:hidden"
+          className="focus-ring mr-1 rounded-pill p-2 md:hidden"
           aria-label={open ? "Tutup menu" : "Buka menu"}
           aria-expanded={open}
           aria-controls="menu-mobile"
@@ -158,19 +163,19 @@ export default function Navbar() {
         >
           {open ? <X aria-hidden /> : <Menu aria-hidden />}
         </button>
-      </Container>
+      </div>
 
       {open && (
         <nav
           id="menu-mobile"
           aria-label="Menu utama"
-          className="flex flex-col gap-1 border-t border-ink/5 bg-white px-6 py-4 md:hidden"
+          className="mx-auto mt-2 flex w-full max-w-5xl flex-col gap-1 rounded-brand-lg border border-ink/10 bg-white px-5 py-4 shadow-card-hover md:hidden"
         >
           {NAV_LINKS.map((l) => (
             <div key={l.href}>
               <Link
                 href={l.href}
-                className="block py-2 text-sm font-medium text-ink-mid"
+                className="block py-2 text-sm font-semibold text-ink-mid"
                 onClick={() => setOpen(false)}
               >
                 {l.label}
@@ -195,7 +200,7 @@ export default function Navbar() {
             href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary mt-3 justify-center"
+            className="btn btn-primary mt-3 justify-center rounded-pill"
             onClick={() => setOpen(false)}
           >
             <MessageCircle size={16} /> Pesan Sekarang

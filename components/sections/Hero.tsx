@@ -1,61 +1,75 @@
-import Link from "next/link";
+import Image from "next/image";
 import {
   MessageCircle,
-  ArrowDown,
   Truck,
   Users,
   ShieldCheck,
-  CheckCircle,
+  PackageCheck,
 } from "lucide-react";
 import Container from "@/components/Container";
 import { WA_URL } from "@/lib/site";
 
-const BADGES = [
+const PROOFS = [
   { Icon: Users, label: "200+ Mitra Aktif" },
-  { Icon: Truck, label: "Gratis Ongkir" },
-  { Icon: ShieldCheck, label: "Garansi Kerusakan" },
-  { Icon: CheckCircle, label: "Stok Selalu Ada" },
+  { Icon: Truck, label: "Gratis Ongkir Se-DIY" },
+  { Icon: ShieldCheck, label: "Garansi Telur Pecah" },
+  { Icon: PackageCheck, label: "Stok Selalu Ada" },
 ];
 
+/**
+ * Hero mengikuti pola BroilerX: judul 48px/900 di tengah, subjudul 18px/700,
+ * satu CTA kuning. Montase farm (hero-farm.png) dipasang sebagai background
+ * penuh section (object-cover, ditambat ke bawah agar keranjang telur selalu
+ * terlihat); teks duduk di area langit putih bagian atas gambar.
+ */
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-cream-2 py-20 md:py-28">
-      <Container>
-        <span className="section-label">Potorono, Bantul, Yogyakarta</span>
-        <h1 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-7xl">
-          Supplier Telur{" "}
-          <em className="not-italic text-brand-orange">Segar &amp; Terpercaya</em>{" "}
-          di Yogyakarta
-        </h1>
-        <p className="mt-6 max-w-xl text-lg text-ink-mid">
-          Mitra Telur Jogja menyediakan telur ayam komersial dan telur omega
-          berkualitas tinggi untuk seluruh wilayah DIY. Gratis ongkir, fresh
-          dari farm, langsung diantar ke lokasi Anda.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href={WA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            <MessageCircle size={16} /> Pesan via WhatsApp
-          </a>
-          <Link href="/#produk" className="btn btn-secondary">
-            Lihat Produk <ArrowDown size={16} />
-          </Link>
-        </div>
-        <div className="mt-10 flex flex-wrap gap-4">
-          {BADGES.map(({ Icon: BadgeIcon, label }) => (
-            <span
-              key={label}
-              className="flex items-center gap-2 rounded-brand bg-white px-4 py-2 text-sm font-medium text-ink-mid shadow-brand"
+    <section className="relative overflow-hidden bg-white">
+      <Image
+        src="/img/hero-farm.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-bottom"
+      />
+
+      <div className="relative pb-8 pt-10 md:pb-12 md:pt-16">
+        <Container className="text-center">
+          <h1 className="mx-auto max-w-4xl font-display text-4xl font-black leading-[1.05] tracking-[-0.02em] text-ink md:text-[3rem]">
+            Telur Segar dari Farm, Diantar ke Lokasi Anda
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-lg font-bold text-ink-mid">
+            Telur Ayam Komersial &amp; Telur Omega — Gratis Ongkir Seluruh DIY
+          </p>
+          <div className="mt-8 flex justify-center">
+            <a
+              href={WA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary px-10"
             >
-              <BadgeIcon size={16} className="text-brand-rust" /> {label}
-            </span>
-          ))}
-        </div>
-      </Container>
+              <MessageCircle size={16} /> Pesan via WhatsApp
+            </a>
+          </div>
+        </Container>
+
+        {/* Jendela agar montase farm & keranjang telur terlihat di bawah teks. */}
+        <div aria-hidden className="h-64 md:h-[26rem]" />
+
+        <Container>
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-5 rounded-card border border-ink/10 bg-white px-6 py-6 shadow-card md:grid-cols-4 md:px-8">
+            {PROOFS.map(({ Icon, label }) => (
+              <li key={label} className="flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-brand bg-brand-yellow/15 text-ink">
+                  <Icon size={19} aria-hidden />
+                </span>
+                <span className="text-sm font-semibold text-ink">{label}</span>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </div>
     </section>
   );
 }

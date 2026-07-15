@@ -6,7 +6,7 @@ export default function Advantages({ items }: { items: Advantage[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section id="keunggulan" className="section">
+    <section id="keunggulan" className="section bg-cream-2">
       <Container>
         <p className="section-label">Keunggulan Kami</p>
         <h2 className="section-title">Mengapa Memilih Mitra Telur Jogja?</h2>
@@ -21,7 +21,7 @@ export default function Advantages({ items }: { items: Advantage[] }) {
               key={item._id}
               className="card card-hover p-6"
             >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-orange/10 text-brand-rust">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-yellow/15 text-ink">
                 <Icon name={item.icon} />
               </span>
               <h3 className="mt-4 font-bold text-ink">{item.title}</h3>

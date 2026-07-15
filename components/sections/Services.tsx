@@ -30,33 +30,33 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="layanan" className="section bg-cream-2">
+    <section id="layanan" className="section bg-white">
       <Container>
-        <div className="max-w-2xl">
-          <span className="section-label">Layanan Kami</span>
-          <h2 className="section-title">
-            Lebih dari Sekadar Menjual Telur
-          </h2>
-          <p className="mt-4 text-lg text-ink-mid">
-            Kami menyediakan layanan yang membuat pengadaan telur Anda mudah,
-            aman, dan bisa diandalkan setiap hari.
-          </p>
-        </div>
+        <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+          <div>
+            <p className="section-label">Layanan Kami</p>
+            <h2 className="section-title">Lebih dari Sekadar Menjual Telur</h2>
+            <p className="mt-4 text-ink-mid">
+              Kami menyediakan layanan yang membuat pengadaan telur Anda
+              mudah, aman, dan bisa diandalkan setiap hari.
+            </p>
+          </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {SERVICES.map(({ Icon, title, description }) => (
-            <article key={title} className="card card-hover p-7">
-              <span className="inline-flex h-14 w-14 items-center justify-center rounded-pill bg-brand-orange/10 text-brand-orange">
-                <Icon size={26} aria-hidden />
-              </span>
-              <h3 className="mt-5 font-display text-xl font-bold text-ink">
-                {title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-mid">
-                {description}
-              </p>
-            </article>
-          ))}
+          <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
+            {SERVICES.map(({ Icon, title, description }) => (
+              <article key={title} className="border-t-2 border-ink/10 pt-6">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-brand bg-brand-yellow/15 text-ink">
+                  <Icon size={21} aria-hidden />
+                </span>
+                <h3 className="mt-4 text-lg font-extrabold text-ink">
+                  {title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-mid">
+                  {description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </Container>
     </section>

@@ -14,7 +14,8 @@ export default function SiteLayout({
         Lompat ke konten utama
       </a>
       <Navbar />
-      <main id="konten" tabIndex={-1}>
+      {/* Ruang untuk navbar mengambang (fixed): tinggi pill + offset atas. */}
+      <main id="konten" tabIndex={-1} className="pt-20 md:pt-24">
         {children}
       </main>
       <Footer />

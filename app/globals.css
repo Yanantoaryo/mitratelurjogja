@@ -6,8 +6,13 @@
   html {
     scroll-behavior: smooth;
   }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
   body {
-    @apply bg-cream text-ink font-sans;
+    @apply bg-cream font-sans text-ink antialiased;
     overflow-x: hidden;
   }
 }
@@ -17,49 +22,53 @@
     @apply mx-auto w-full max-w-container px-6;
   }
 
-  /* AgriHub: ritme vertikal lapang (basis 18px). ~90px lalu ~126px. */
+  /* BroilerX: ritme vertikal basis 16px — 80px / 112px. */
   .section {
-    @apply py-[4.5rem] md:py-[7rem];
+    @apply py-20 md:py-28;
   }
 
   /*
-    Kartu AgriHub: sudut besar (24px), border tipis, bayangan bernuansa oranye
-    hangat, angkat halus saat hover.
+    Kartu BroilerX: sudut 24px, border slate tipis, bayangan netral halus.
   */
   .card {
-    @apply rounded-brand-lg border border-ink/5 bg-white shadow-card transition duration-200;
+    @apply rounded-card border border-ink/10 bg-white shadow-card transition duration-200;
   }
   .card-hover {
-    @apply hover:-translate-y-1 hover:shadow-card-hover;
+    @apply hover:-translate-y-0.5 hover:shadow-card-hover;
   }
 
   /*
-    Judul AgriHub: serif besar dan tebal, letter-spacing rapat — tipografi jadi
-    elemen hero. leading rapat agar terasa padat dan berkarakter.
+    Judul section: Inter weight 900 (voice tipografis BroilerX), leading
+    rapat, tracking sedikit negatif.
   */
   .section-title {
-    @apply font-display text-[2rem] font-bold leading-[1.1] tracking-[-0.02em] text-ink md:text-5xl;
+    @apply font-display text-3xl font-black leading-[1.1] tracking-[-0.02em] text-ink md:text-[2.5rem] md:leading-[1.08];
   }
+  /* Kicker kecil di atas judul: uppercase, tanpa pil dekoratif. */
   .section-label {
-    @apply mb-3 inline-block rounded-pill bg-brand-orange/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-brand-orange;
+    @apply mb-3 block text-xs font-bold uppercase tracking-[0.14em] text-ink-muted;
   }
 
-  /* Tombol pill AgriHub. */
+  /* Tombol BroilerX: sudut 8px, padding ringkas. */
   .btn {
-    @apply inline-flex items-center gap-2 rounded-pill px-7 py-3.5 text-sm font-semibold transition;
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-brand px-6 py-3 text-sm font-bold transition;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-white;
   }
-  /* Teks putih di atas oranye #B95510 = 4.81:1, lolos AA. */
+  /* CTA utama: kuning brand dengan teks gelap (kontras 12:1). */
   .btn-primary {
-    @apply bg-brand-orange text-white shadow-brand hover:shadow-brand-hover hover:brightness-110;
+    @apply bg-brand-yellow text-ink shadow-brand hover:bg-brand-yellow-2 hover:shadow-brand-hover;
   }
+  /* Sekunder: outline tipis, teks gelap. */
   .btn-secondary {
-    @apply border border-ink/15 bg-white text-ink hover:border-brand-orange hover:text-brand-orange;
+    @apply border border-ink/15 bg-white text-ink hover:border-ink/40;
+  }
+  /* Gelap: dipakai di atas permukaan kuning / terang. */
+  .btn-dark {
+    @apply bg-ink text-white hover:bg-surface-darker;
   }
 
-  /* Tautan teks di dalam prosa dan navigasi. */
   .focus-ring {
-    @apply focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-brand-rust focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+    @apply focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-white;
   }
 
   /* Tampil hanya saat menerima fokus keyboard. */

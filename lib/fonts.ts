@@ -1,19 +1,20 @@
-import { Noto_Serif, Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
 
 /**
- * Desain AgriHub (Design/DESIGN-bestwpware-com.md): Noto Serif untuk judul
- * (besar & tebal, tipografi sebagai elemen utama), Montserrat untuk teks.
+ * Desain BroilerX (DESIGN-broilerx-com.md): satu keluarga Inter untuk seluruh
+ * halaman — heading weight 900 (voice tipografis brand), body 400–500.
+ * Kedua variabel lama diarahkan ke Inter agar komponen tidak perlu diubah.
  */
-export const notoSerif = Noto_Serif({
+export const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-sans",
   display: "swap",
 });
 
-export const montserrat = Montserrat({
+export const interDisplay = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-display",
   display: "swap",
 });

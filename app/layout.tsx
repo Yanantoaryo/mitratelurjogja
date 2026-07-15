@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { notoSerif, montserrat } from "@/lib/fonts";
+import { inter, interDisplay } from "@/lib/fonts";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://mitratelurjogja.com";
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${notoSerif.variable} ${montserrat.variable}`}>
+    <html lang="id" className={`${inter.variable} ${interDisplay.variable}`}>
       <body>{children}</body>
     </html>
   );
