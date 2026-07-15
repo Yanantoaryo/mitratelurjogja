@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import ArticleCard from "@/components/ArticleCard";
 import Container from "@/components/Container";
+import Reveal from "@/components/Reveal";
 import { SITE_URL } from "@/lib/site";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { articleCategoriesQuery, articlesQuery } from "@/sanity/lib/queries";
@@ -59,9 +60,11 @@ export default async function BlogPage({
   return (
     <section className="section">
       <Container>
-        <p className="section-label">Blog</p>
-        <h1 className="section-title">Wawasan Seputar Telur</h1>
-        <p className="mt-3 max-w-xl text-ink-mid">{DESCRIPTION}</p>
+        <Reveal>
+          <p className="section-label">Blog</p>
+          <h1 className="section-title">Wawasan Seputar Telur</h1>
+          <p className="mt-3 max-w-xl text-ink-mid">{DESCRIPTION}</p>
+        </Reveal>
 
         {/* Form GET biasa: filter dan pencarian tetap jalan tanpa JavaScript. */}
         <form method="get" action="/blog" className="mt-10 flex max-w-md gap-2">
@@ -129,8 +132,10 @@ export default async function BlogPage({
           </p>
         ) : (
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.map((a) => (
-              <ArticleCard key={a._id} article={a} />
+            {articles.map((a, i) => (
+              <Reveal key={a._id} delay={(i % 3) * 90} className="flex">
+                <ArticleCard article={a} />
+              </Reveal>
             ))}
           </div>
         )}

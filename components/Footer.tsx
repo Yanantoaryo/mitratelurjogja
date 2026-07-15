@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Facebook, MapPin, Phone } from "lucide-react";
 import Container from "./Container";
@@ -8,7 +9,7 @@ import Container from "./Container";
  * membingungkan pengguna perintah suara, yang mengucapkan apa yang terlihat.
  * Path resmi dari paket simple-icons.
  */
-function TiktokIcon({ size = 18 }: { size?: number }) {
+function TiktokIcon({ size = 20 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -23,69 +24,134 @@ function TiktokIcon({ size = 18 }: { size?: number }) {
 }
 
 const SOCIALS = [
-  { href: "https://instagram.com/mitratelurjogja", label: "Instagram", Icon: Instagram },
   { href: "https://facebook.com/mitratelurjogja", label: "Facebook", Icon: Facebook },
+  { href: "https://instagram.com/mitratelurjogja", label: "Instagram", Icon: Instagram },
   { href: "https://tiktok.com/@mitratelurjogja", label: "TikTok", Icon: TiktokIcon },
 ];
+
+/* Kelompok tautan ala footer BroilerX: heading uppercase, daftar link putih. */
+const LINK_GROUPS = [
+  {
+    heading: "Produk",
+    links: [
+      { href: "/produk", label: "Semua Produk" },
+      { href: "/produk/telur-ayam-komersial", label: "Telur Ayam Komersial" },
+      { href: "/produk/telur-omega", label: "Telur Omega" },
+    ],
+  },
+  {
+    heading: "Perusahaan",
+    links: [
+      { href: "/tentang", label: "Tentang Kami" },
+      { href: "/galeri", label: "Galeri" },
+      { href: "/kontak", label: "Kontak" },
+    ],
+  },
+  {
+    heading: "Informasi",
+    links: [
+      { href: "/blog", label: "Artikel" },
+      { href: "/#faq", label: "FAQ" },
+      { href: "/#cara-order", label: "Cara Pemesanan" },
+    ],
+  },
+];
+
+const PHONES_DISPLAY = ["+62 857-0227-5769", "+62 858-4814-8108"];
 
 export default function Footer() {
   return (
     <footer className="bg-surface-dark text-white">
-      <Container className="grid gap-10 py-14 md:grid-cols-3">
-        <div>
-          <p className="font-display text-lg font-extrabold text-white">
+      <Container className="py-14 md:py-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-2.5">
+              <Image
+                src="/logo-mtj.png"
+                alt=""
+                width={102}
+                height={72}
+                sizes="45px"
+                className="h-9 w-auto"
+              />
+              <span className="font-display text-lg font-extrabold tracking-tight text-white">
+                Mitra Telur Jogja
+              </span>
+            </Link>
+
+            <p className="mt-6 text-sm font-bold text-white">Kantor Kami</p>
+            <address className="mt-3 space-y-2.5 text-sm not-italic leading-relaxed text-white/60">
+              <p className="flex gap-2">
+                <MapPin size={16} aria-hidden className="mt-0.5 shrink-0" />
+                Ngelo, Potorono, Kec. Banguntapan, Kabupaten Bantul, Daerah
+                Istimewa Yogyakarta 55196
+              </p>
+              {PHONES_DISPLAY.map((phone) => (
+                <p key={phone} className="flex gap-2">
+                  <Phone size={16} aria-hidden className="mt-0.5 shrink-0" />
+                  {phone}
+                </p>
+              ))}
+            </address>
+
+            <div className="mt-7 flex gap-5">
+              {SOCIALS.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="text-white/80 transition hover:text-brand-yellow"
+                >
+                  <Icon size={20} aria-hidden />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {LINK_GROUPS.map((group) => (
+            <nav key={group.heading} aria-label={group.heading}>
+              <p className="text-sm font-bold uppercase tracking-[0.08em] text-white/50">
+                {group.heading}
+              </p>
+              <ul className="mt-5 space-y-3.5">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm font-semibold text-white/85 transition hover:text-brand-yellow"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-col items-center gap-2 border-t border-white/10 pt-5 text-center text-sm text-white/50">
+          <p>
+            © Copyright {new Date().getFullYear()}, All Rights Reserved by
             Mitra Telur Jogja
           </p>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
-            Supplier telur ayam komersial &amp; telur omega terpercaya di
-            Yogyakarta.
-          </p>
-        </div>
-
-        <div className="space-y-3 text-sm text-white/70">
-          <p className="flex items-center gap-2">
-            <MapPin size={16} aria-hidden className="text-brand-yellow" />{" "}
-            Potorono, Bantul, Yogyakarta
-          </p>
-          <p className="flex items-center gap-2">
-            <Phone size={16} aria-hidden className="text-brand-yellow" /> +62
-            857-0227-5769
-          </p>
-          <p className="flex items-center gap-2">
-            <Phone size={16} aria-hidden className="text-brand-yellow" /> +62
-            858-4814-8108
-          </p>
-        </div>
-
-        <div>
-          <p className="mb-4 text-sm font-bold text-white">Ikuti Kami</p>
-          <div className="flex gap-3">
-            {SOCIALS.map(({ href, label, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-brand-yellow hover:text-brand-yellow"
-              >
-                <Icon size={18} aria-hidden />
-              </a>
-            ))}
+          <div className="flex gap-6">
+            <Link
+              href="/tentang"
+              className="underline underline-offset-4 transition hover:text-white"
+            >
+              Tentang
+            </Link>
+            <Link
+              href="/kontak"
+              className="underline underline-offset-4 transition hover:text-white"
+            >
+              Kontak
+            </Link>
           </div>
         </div>
       </Container>
-
-      <div className="border-t border-white/10 py-5 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} Mitra Telur Jogja ·{" "}
-        <Link href="/tentang" className="transition hover:text-white">
-          Tentang
-        </Link>{" "}
-        ·{" "}
-        <Link href="/kontak" className="transition hover:text-white">
-          Kontak
-        </Link>
-      </div>
     </footer>
   );
 }

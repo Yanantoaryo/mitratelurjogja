@@ -49,9 +49,9 @@
     @apply mb-3 block text-xs font-bold uppercase tracking-[0.14em] text-ink-muted;
   }
 
-  /* Tombol BroilerX: sudut 8px, padding ringkas. */
+  /* Tombol BroilerX: sudut 8px, padding ringkas; sedikit mengecil saat ditekan. */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-brand px-6 py-3 text-sm font-bold transition;
+    @apply inline-flex items-center justify-center gap-2 rounded-brand px-6 py-3 text-sm font-bold transition active:scale-[0.97] motion-reduce:active:scale-100;
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-white;
   }
   /* CTA utama: kuning brand dengan teks gelap (kontras 12:1). */
@@ -69,6 +69,29 @@
 
   .focus-ring {
     @apply focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+  }
+
+  /*
+    Scroll-reveal (components/Reveal.tsx): fade + naik halus, sekali saat
+    elemen masuk viewport. Kurva ease-out lembut ala BroilerX.
+  */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
   }
 
   /* Tampil hanya saat menerima fokus keyboard. */

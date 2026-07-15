@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Instagram, MapPin, Phone } from "lucide-react";
 import Container from "@/components/Container";
 import ContactForm from "@/components/ContactForm";
+import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import { formatDays } from "@/lib/hours";
 import { localBusinessSchema } from "@/lib/jsonld";
@@ -65,21 +66,26 @@ export default async function KontakPage() {
     <section className="section">
       <JsonLd data={localBusinessSchema(settings)} />
       <Container>
-        <p className="section-label">Kontak</p>
-        <h1 className="section-title">Hubungi Kami</h1>
-        <p className="mt-4 max-w-xl text-ink-mid">{DESCRIPTION}</p>
+        <Reveal>
+          <p className="section-label">Kontak</p>
+          <h1 className="section-title">Hubungi Kami</h1>
+          <p className="mt-4 max-w-xl text-ink-mid">{DESCRIPTION}</p>
+        </Reveal>
 
         <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
-          <div className="rounded-card border border-ink/10 bg-white p-6 shadow-card md:p-8">
+          <Reveal
+            delay={100}
+            className="rounded-card border border-ink/10 bg-white p-6 shadow-card md:p-8"
+          >
             <h2 className="font-display text-xl font-extrabold text-ink">
               Kirim pesan
             </h2>
             <div className="mt-6">
               <ContactForm />
             </div>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={180}>
             <h2 className="font-display text-xl font-extrabold text-ink">
               Informasi
             </h2>
@@ -181,7 +187,7 @@ export default async function KontakPage() {
               <MapPin size={16} aria-hidden />
               Lihat di Google Maps
             </a>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

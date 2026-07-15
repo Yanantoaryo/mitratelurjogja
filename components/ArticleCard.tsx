@@ -9,7 +9,7 @@ export default function ArticleCard({ article }: { article: ArticleSummary }) {
     article;
 
   return (
-    <article className="card card-hover flex flex-col overflow-hidden">
+    <article className="card card-hover flex w-full flex-col overflow-hidden">
       <Link href={`/blog/${slug}`} className="relative block aspect-[16/9] bg-cream-2">
         {coverImage ? (
           <Image

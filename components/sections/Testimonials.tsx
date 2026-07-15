@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
 import Container from "@/components/Container";
+import Reveal from "@/components/Reveal";
 import { urlFor } from "@/sanity/lib/image";
 import type { Testimonial } from "@/sanity/lib/types";
 
@@ -32,17 +33,23 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
   return (
     <section id="testimoni" className="section bg-cream-2">
       <Container>
-        <p className="section-label">Testimoni Pelanggan</p>
-        <h2 className="section-title">Kata Mereka tentang Mitra Telur Jogja</h2>
-        <p className="mt-3 max-w-xl text-ink-mid">
-          Kepuasan mitra adalah prioritas utama kami. Berikut pengalaman nyata
-          dari pelanggan setia kami.
-        </p>
+        <Reveal>
+          <p className="section-label">Testimoni Pelanggan</p>
+          <h2 className="section-title">
+            Kata Mereka tentang Mitra Telur Jogja
+          </h2>
+          <p className="mt-3 max-w-xl text-ink-mid">
+            Kepuasan mitra adalah prioritas utama kami. Berikut pengalaman
+            nyata dari pelanggan setia kami.
+          </p>
+        </Reveal>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {items.map((item) => (
-            <figure
+          {items.map((item, i) => (
+            <Reveal
+              as="figure"
               key={item._id}
+              delay={(i % 3) * 100}
               className="card flex flex-col p-6"
             >
               {typeof item.rating === "number" && <Rating value={item.rating} />}
@@ -77,7 +84,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
                   )}
                 </span>
               </figcaption>
-            </figure>
+            </Reveal>
           ))}
         </div>
       </Container>

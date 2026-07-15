@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { X, Check } from "lucide-react";
 import Container from "@/components/Container";
+import Reveal from "@/components/Reveal";
 
 const PAINS = [
   {
@@ -37,7 +38,7 @@ export default function Problem() {
     <section className="section bg-white">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-          <div>
+          <Reveal>
             <p className="section-label">Masalah yang Sering Terjadi</p>
             <h2 className="section-title">
               Kesulitan Mencari Supplier Telur yang Bisa Diandalkan?
@@ -46,11 +47,16 @@ export default function Problem() {
               Banyak bisnis makanan dan konsumen mengalami masalah yang sama
               saat membeli telur.
             </p>
-          </div>
+          </Reveal>
 
           <ul className="divide-y divide-ink/10 border-y border-ink/10">
-            {PAINS.map((pain) => (
-              <li key={pain.title} className="flex gap-4 py-5">
+            {PAINS.map((pain, i) => (
+              <Reveal
+                as="li"
+                key={pain.title}
+                delay={i * 90}
+                className="flex gap-4 py-5"
+              >
                 <X
                   size={18}
                   aria-hidden
@@ -62,12 +68,12 @@ export default function Problem() {
                     {pain.description}
                   </p>
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
 
-        <div className="mt-14 overflow-hidden rounded-card bg-surface-dark">
+        <Reveal className="mt-14 overflow-hidden rounded-card bg-surface-dark">
           <div className="grid md:grid-cols-2">
             <div className="p-8 md:p-12">
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-yellow">
@@ -101,7 +107,7 @@ export default function Problem() {
               />
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

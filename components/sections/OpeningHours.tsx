@@ -1,5 +1,6 @@
 import { Clock, MapPin } from "lucide-react";
 import Container from "@/components/Container";
+import Reveal from "@/components/Reveal";
 import { DAY_LABELS, formatDays, isOpenNow } from "@/lib/hours";
 import { ADDRESS } from "@/lib/site";
 import type { SiteSettings } from "@/sanity/lib/types";
@@ -24,10 +25,12 @@ export default function OpeningHours({
   return (
     <section id="jam-operasional" className="section">
       <Container>
-        <p className="section-label">Jam Operasional</p>
-        <h2 className="section-title">Kapan Kami Melayani</h2>
+        <Reveal>
+          <p className="section-label">Jam Operasional</p>
+          <h2 className="section-title">Kapan Kami Melayani</h2>
+        </Reveal>
 
-        <div className="card mt-8 max-w-2xl overflow-hidden">
+        <Reveal delay={100} className="card mt-8 max-w-2xl overflow-hidden">
           <div className="flex flex-wrap items-center gap-3 border-b border-ink/10 px-6 py-4">
             <Clock size={18} aria-hidden className="text-brand-rust" />
             <span
@@ -69,11 +72,15 @@ export default function OpeningHours({
               </div>
             )}
           </dl>
-        </div>
+        </Reveal>
 
-        <p className="mt-5 flex items-center gap-2 text-sm text-ink-mid">
+        <Reveal
+          as="p"
+          delay={150}
+          className="mt-5 flex items-center gap-2 text-sm text-ink-mid"
+        >
           <MapPin size={16} aria-hidden /> {settings?.address ?? ADDRESS}
-        </p>
+        </Reveal>
       </Container>
     </section>
   );
